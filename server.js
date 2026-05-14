@@ -22,21 +22,10 @@ app.use(helmet({
 }));
 
 app.use(cors({
-  origin: function(origin, callback) {
-    // Allow localhost dev ports + configured CLIENT_URL
-    const allowed = [
-      process.env.CLIENT_URL || 'http://localhost:3000',
-      'http://localhost:3000',
-      'http://localhost:3001',
-      'http://localhost:3002'
-    ];
-    if (!origin || allowed.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(null, true); // allow all in development
-    }
-  },
-  credentials: true
+  origin: '*',
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json({ limit: '10mb' }));
@@ -94,6 +83,28 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Handle HEAD requests for SPA (health checks, favicon, etc)
+app.head('/', (req, res) => {
+  res.status(200).end();
+});
+
+// SPA fallback route - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(frontendBuildPath, 'index.html'), (err) => {
+      if (err) {
+        console.error('Error serving index.html:', err);
+        res.status(500).json({ error: 'Could not serve frontend' });
+      }
+    });
+  } else {
+    res.status(404).json({
+      success: false,
+      message: `API endpoint not found: ${req.method} ${req.path}`
+    });
+  }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   // Log error details
@@ -115,23 +126,6 @@ app.use((err, req, res, next) => {
       stack: err.stack,
       details: err
     } : undefined
-  });
-});
-
-// 404 handler (must be last)
-app.use((req, res) => {
-  console.log(`⚠️  404 - Route not found: ${req.method} ${req.path}`);
-  res.status(404).json({
-    success: false,
-    message: `Route not found: ${req.method} ${req.path}`,
-    availableRoutes: [
-      'GET /api/health',
-      'POST /api/auth/register',
-      'POST /api/auth/login',
-      'GET /api/properties',
-      'POST /api/properties',
-      'GET /api/transfers'
-    ]
   });
 });
 
@@ -172,15 +166,6 @@ process.on('unhandledRejection', (err) => {
 });
 
 // Handle uncaught exceptions
-// SPA fallback route - serve index.html for all non-API routes
-app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(frontendBuildPath, 'index.html'));
-  } else {
-    res.status(404).json({ error: 'API endpoint not found' });
-  }
-});
-
 process.on('uncaughtException', (err) => {
   console.error('❌ UNCAUGHT EXCEPTION:', err.message);
   console.error('Stack:', err.stack);
