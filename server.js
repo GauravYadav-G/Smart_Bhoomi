@@ -31,7 +31,7 @@ app.use(helmet({
       fontSrc: ["'self'", "data:", "fonts.googleapis.com", "fonts.gstatic.com"],
       connectSrc: ["'self'", "https:", "http://", "*.tile.openstreetmap.org", "tile.openstreetmap.org"],
       mediaSrc: ["'self'"],
-      frameSrc: ["'self'"],
+      frameSrc: ["'self'", "https://www.openstreetmap.org", "https://maps.openstreetmap.org"],
     },
   },
 }));
