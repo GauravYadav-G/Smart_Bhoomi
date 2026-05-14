@@ -2,17 +2,39 @@ const mongoose = require('mongoose');
 
 const connectDatabase = async () => {
   try {
-    // Check if DATABASE_URI exists
-    if (!process.env.MONGODB_URI && !process.env.DATABASE_URI) {
-      console.error('❌ MONGODB_URI or DATABASE_URI is not defined in environment variables');
-      console.error('📝 Set MONGODB_URI in Render environment variables or .env file');
-      process.exit(1);
-    }
-
-    // Use MONGODB_URI (standard MongoDB connection string)
-    const dbUri = process.env.MONGODB_URI || process.env.DATABASE_URI;
+    // Check environment variables - MONGODB_URI is required
+    const dbUri = process.env.MONGODB_URI;
     
-    console.log(`🔗 Connecting to MongoDB: ${dbUri.substring(0, 50)}...`);
+    // If no MONGODB_URI, show detailed error
+    if (!dbUri) {
+      console.error('\n❌ CRITICAL: MONGODB_URI is not configured!');
+      console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.error('\n📝 For Render Production (THIS IS WHAT YOU NEED):');
+      console.error('   1. Go to: https://render.com/dashboard');
+      console.error('   2. Click: Smart Bhoomi service');
+      console.error('   3. Click: Environment tab');
+      console.error('   4. Add variable:');
+      console.error('      Key: MONGODB_URI');
+      console.error('      Value: mongodb+srv://user:pass@cluster.mongodb.net/smart_bhoomi');
+      console.error('\n📝 For Local Development:');
+      console.error('   1. Install MongoDB locally: https://www.mongodb.com/try/download/community');
+      console.error('   2. Start MongoDB: mongod');
+      console.error('   3. In .env, uncomment: MONGODB_URI=mongodb://localhost:27017/property_registry');
+      console.error('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+      
+      // For production (Render), this is critical
+      if (process.env.NODE_ENV === 'production') {
+        console.error('⚠️  Application cannot start in production without MONGODB_URI');
+        process.exit(1);
+      }
+      
+      // For development, retry after delay
+      console.error('⚠️  Retrying connection in 5 seconds...');
+      setTimeout(() => connectDatabase(), 5000);
+      return;
+    }
+    
+    console.log(`🔗 Connecting to MongoDB: ${dbUri.substring(0, 60)}...`);
 
     const conn = await mongoose.connect(dbUri, {
       useNewUrlParser: true,
@@ -23,13 +45,15 @@ const connectDatabase = async () => {
       minPoolSize: 5
     });
 
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    console.log(`✅ MongoDB Connected!`);
+    console.log(`   Host: ${conn.connection.host}`);
     console.log(`   Database: ${conn.connection.name}`);
-    console.log(`   State: ${conn.connection.readyState === 1 ? 'Connected' : 'Disconnected'}`);
+    console.log(`   State: Connected\n`);
   } catch (error) {
     console.error(`❌ Database Connection Error: ${error.message}`);
-    console.error('Stack:', error.stack);
-    // Don't exit immediately - allow server to start but with errors
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Stack:', error.stack);
+    }
     console.error('⚠️  Retrying connection in 5 seconds...');
     setTimeout(() => connectDatabase(), 5000);
   }
