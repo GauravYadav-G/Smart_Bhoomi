@@ -10,6 +10,9 @@ const { initializeWebSocket, emitEvent } = require('./services/realtimeService')
 const app = express();
 const server = http.createServer(app);
 
+// Trust proxy for production (Render, Heroku, etc use proxies)
+app.set('trust proxy', 1);
+
 // Connect to database
 connectDatabase();
 

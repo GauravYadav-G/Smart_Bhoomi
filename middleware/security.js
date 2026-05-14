@@ -5,7 +5,12 @@ const { body, validationResult } = require('express-validator');
 exports.apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1000, // Increased for development - limit each IP to 1000 requests per windowMs
-  message: 'Too many requests from this IP, please try again later'
+  message: 'Too many requests from this IP, please try again later',
+  skip: (req) => process.env.NODE_ENV === 'development', // Skip rate limiting in dev
+  keyGenerator: (req, res) => {
+    // For production with proxies, use X-Forwarded-For; for local, use socket address
+    return req.ip || req.connection.remoteAddress || req.socket.remoteAddress;
+  }
 });
 
 // Strict rate limiter for authentication endpoints
@@ -15,6 +20,11 @@ exports.authLimiter = rateLimit({
   message: 'Too many authentication attempts, please try again later',
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => process.env.NODE_ENV === 'development', // Skip rate limiting in dev
+  keyGenerator: (req, res) => {
+    // For production with proxies, use X-Forwarded-For; for local, use socket address
+    return req.ip || req.connection.remoteAddress || req.socket.remoteAddress;
+  }
 });
 
 // Validation middleware
