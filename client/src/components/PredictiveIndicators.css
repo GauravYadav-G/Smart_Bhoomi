@@ -1,0 +1,1616 @@
+/**
+ * Predictive Indicators Styles
+ * Government-themed AI-enhanced status components
+ */
+
+/* ===== Approval Time Estimator ===== */
+.approval-estimator {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.estimator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.estimator-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.ai-icon {
+  color: #7C3AED;
+  font-size: 1rem;
+}
+
+.confidence-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.confidence-high {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.confidence-medium {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.confidence-low {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.estimator-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #F0F5FF 0%, #E9D5FF 100%);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.time-icon {
+  font-size: 2rem;
+  color: #0B3D91;
+}
+
+.time-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1;
+}
+
+.time-label {
+  font-size: 0.8125rem;
+  color: #64748B;
+  margin-top: 0.25rem;
+}
+
+.estimator-factors {
+  margin-bottom: 1rem;
+}
+
+.estimator-factors h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748B;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.estimator-factors ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.estimator-factors li {
+  font-size: 0.8125rem;
+  color: #475569;
+  padding: 0.375rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.estimator-factors li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #7C3AED;
+  font-weight: bold;
+}
+
+.estimator-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #94A3B8;
+}
+
+.estimator-note svg {
+  flex-shrink: 0;
+}
+
+/* Compact Version */
+.approval-estimator-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: #F0F5FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 6px;
+}
+
+.approval-estimator-compact .estimator-icon {
+  color: #0B3D91;
+  font-size: 0.875rem;
+}
+
+.approval-estimator-compact .estimator-time {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.approval-estimator-compact .estimator-confidence {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+}
+
+/* ===== Risk Score Indicator ===== */
+.risk-score-indicator {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.risk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.risk-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.shield-icon {
+  color: #0B3D91;
+  font-size: 1rem;
+}
+
+.risk-level-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.risk-critical {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.risk-high {
+  background: #FFEDD5;
+  color: #EA580C;
+}
+
+.risk-medium {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.risk-low {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.risk-gauge-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.risk-gauge {
+  position: relative;
+  width: 200px;
+  height: 120px;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-fill {
+  transition: stroke-dasharray 0.8s ease;
+}
+
+.gauge-center {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.gauge-score {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.gauge-max {
+  font-size: 1rem;
+  color: #94A3B8;
+  margin-left: 0.25rem;
+}
+
+.risk-factors h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748B;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.risk-factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.risk-factor-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #475569;
+}
+
+.factor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7C3AED;
+  flex-shrink: 0;
+}
+
+/* Compact Version */
+.risk-score-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.risk-score-compact svg {
+  font-size: 0.875rem;
+}
+
+.risk-score-compact .risk-score-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.risk-score-compact .risk-level-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.risk-score-compact.risk-critical {
+  background: #FEF2F2;
+  border-color: #FCA5A5;
+  color: #DC2626;
+}
+
+.risk-score-compact.risk-high {
+  background: #FFF7ED;
+  border-color: #FDBA74;
+  color: #EA580C;
+}
+
+.risk-score-compact.risk-medium {
+  background: #FFFBEB;
+  border-color: #FCD34D;
+  color: #D97706;
+}
+
+.risk-score-compact.risk-low {
+  background: #F0FDF4;
+  border-color: #86EFAC;
+  color: #059669;
+}
+
+/* ===== Fraud Alert Banner ===== */
+.fraud-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 2px solid;
+  animation: fadeInSlide 0.4s ease;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fraud-critical {
+  background: #FEF2F2;
+  border-color: #DC2626;
+}
+
+.fraud-high {
+  background: #FFF7ED;
+  border-color: #EA580C;
+}
+
+.fraud-medium {
+  background: #FFFBEB;
+  border-color: #D97706;
+}
+
+.fraud-low {
+  background: #F0FDF4;
+  border-color: #059669;
+}
+
+.fraud-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fraud-critical .fraud-icon-container {
+  background: #DC2626;
+}
+
+.fraud-high .fraud-icon-container {
+  background: #EA580C;
+}
+
+.fraud-medium .fraud-icon-container {
+  background: #D97706;
+}
+
+.fraud-low .fraud-icon-container {
+  background: #059669;
+}
+
+.fraud-icon {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.fraud-content {
+  flex: 1;
+}
+
+.fraud-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.fraud-severity-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.fraud-critical .fraud-severity-badge {
+  background: #DC2626;
+  color: white;
+}
+
+.fraud-high .fraud-severity-badge {
+  background: #EA580C;
+  color: white;
+}
+
+.fraud-medium .fraud-severity-badge {
+  background: #D97706;
+  color: white;
+}
+
+.fraud-low .fraud-severity-badge {
+  background: #059669;
+  color: white;
+}
+
+.fraud-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0;
+}
+
+.fraud-content p {
+  font-size: 0.875rem;
+  color: #475569;
+  margin: 0 0 0.75rem 0;
+}
+
+.fraud-entities {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.entities-label {
+  font-size: 0.75rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.entity-chip {
+  padding: 0.25rem 0.625rem;
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #0F172A;
+  font-weight: 500;
+}
+
+.fraud-investigate-btn {
+  padding: 0.625rem 1.25rem;
+  background: #0B3D91;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fraud-investigate-btn:hover {
+  background: #072C6B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(11, 61, 145, 0.3);
+}
+
+/* ===== Workflow Suggestion Card ===== */
+.workflow-suggestion-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.workflow-suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-urgent {
+  background: #FEF2F2;
+  border-color: #FECACA;
+}
+
+.suggestion-high {
+  background: #FFFBEB;
+  border-color: #FEF3C7;
+}
+
+.suggestion-medium {
+  background: #F0F9FF;
+  border-color: #BFDBFE;
+}
+
+.suggestion-low {
+  background: #F8FAFC;
+  border-color: #E2E8F0;
+}
+
+.suggestion-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.suggestion-urgent .suggestion-icon-wrap {
+  background: #DC2626;
+  color: white;
+}
+
+.suggestion-high .suggestion-icon-wrap {
+  background: #D97706;
+  color: white;
+}
+
+.suggestion-medium .suggestion-icon-wrap {
+  background: #0891B2;
+  color: white;
+}
+
+.suggestion-low .suggestion-icon-wrap {
+  background: #64748B;
+  color: white;
+}
+
+.suggestion-content {
+  flex: 1;
+}
+
+.suggestion-priority {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.375rem;
+}
+
+.suggestion-urgent .suggestion-priority {
+  background: #DC2626;
+  color: white;
+}
+
+.suggestion-high .suggestion-priority {
+  background: #D97706;
+  color: white;
+}
+
+.suggestion-medium .suggestion-priority {
+  background: #0891B2;
+  color: white;
+}
+
+.suggestion-low .suggestion-priority {
+  background: #64748B;
+  color: white;
+}
+
+.suggestion-content p {
+  font-size: 0.875rem;
+  color: #0F172A;
+  margin: 0;
+  font-weight: 500;
+}
+
+.suggestion-action-btn {
+  padding: 0.5rem 1rem;
+  background: #0B3D91;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.suggestion-action-btn:hover {
+  background: #072C6B;
+}
+
+/* ===== System Health Badge ===== */
+.system-health-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.health-excellent {
+  background: #F0FDF4;
+  border-color: #86EFAC;
+  color: #059669;
+}
+
+.health-good {
+  background: #EFF6FF;
+  border-color: #93C5FD;
+  color: #0891B2;
+}
+
+.health-warning {
+  background: #FFFBEB;
+  border-color: #FCD34D;
+  color: #D97706;
+}
+
+.health-critical {
+  background: #FEF2F2;
+  border-color: #FCA5A5;
+  color: #DC2626;
+}
+
+.health-icon {
+  font-size: 1.25rem;
+}
+
+.health-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.health-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.health-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ===== Blockchain Sync Status ===== */
+.blockchain-sync-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.sync-complete {
+  background: #F3E8FF;
+  border-color: #D8B4FE;
+  color: #7C3AED;
+}
+
+.sync-syncing {
+  background: #DBEAFE;
+  border-color: #93C5FD;
+  color: #0891B2;
+}
+
+.sync-warning {
+  background: #FEF3C7;
+  border-color: #FCD34D;
+  color: #D97706;
+}
+
+.sync-icon-container {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.sync-icon {
+  width: 100%;
+  height: 100%;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: syncSpin 1.5s linear infinite;
+}
+
+@keyframes syncSpin {
+  to { transform: rotate(360deg); }
+}
+
+.sync-complete .sync-icon {
+  border: 3px solid currentColor;
+  animation: none;
+}
+
+.sync-complete .sync-icon::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.sync-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.sync-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.sync-percentage {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sync-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-left: auto;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .fraud-alert-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fraud-investigate-btn {
+    width: 100%;
+  }
+
+  .workflow-suggestion-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .suggestion-action-btn {
+    width: 100%;
+  }
+
+  .blockchain-sync-status {
+    flex-wrap: wrap;
+  }
+
+  .sync-meta {
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  .gauge-fill,
+  .sync-icon,
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   AI PROPERTY DNA — Trust Score Neural Ring
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dnaRingPulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+@keyframes dnaArcDraw {
+  from { stroke-dashoffset: 339.29; }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(124, 58, 237, 0); }
+}
+
+@keyframes scanLine {
+  0% { left: -30%; }
+  100% { left: 130%; }
+}
+
+.ai-dna-card {
+  background: linear-gradient(135deg, #FAFBFF 0%, #F5F3FF 50%, #FFF7ED 100%);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-dna-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7C3AED, #3B82F6, #059669);
+}
+
+.ai-dna-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.ai-dna-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.938rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ai-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7C3AED;
+  animation: neuralPulse 2s ease-in-out infinite;
+}
+
+.ai-dna-icon {
+  color: #7C3AED;
+  font-size: 1.125rem;
+}
+
+.ai-dna-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.ai-dna-ring-section {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 1.25rem;
+}
+
+.ai-dna-ring-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.ai-dna-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ai-dna-arc {
+  animation: dnaArcDraw 1.5s ease-out forwards;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.ai-dna-pulse-ring {
+  animation: dnaRingPulse 3s ease-in-out infinite;
+}
+
+.ai-dna-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.ai-dna-score {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1;
+}
+
+.ai-dna-label {
+  display: block;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+.ai-dna-factors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.ai-dna-factor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.ai-dna-factor-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4F46E5;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.ai-dna-factor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ai-dna-factor-name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.ai-dna-factor-bar-wrap {
+  height: 4px;
+  background: #E2E8F0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ai-dna-factor-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+.ai-dna-factor-score {
+  font-size: 0.813rem;
+  font-weight: 700;
+  color: #0F172A;
+  min-width: 36px;
+  text-align: right;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DOCUMENT ANALYSIS CARD
+   ═══════════════════════════════════════════════════════════════ */
+
+.ai-doc-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-doc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0B3D91, #3B82F6);
+}
+
+.ai-doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ai-doc-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.938rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ai-doc-icon {
+  color: #0B3D91;
+  font-size: 1rem;
+}
+
+.ai-doc-completeness {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.ai-doc-pct {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0B3D91;
+}
+
+.ai-doc-count {
+  font-size: 0.75rem;
+  color: #64748B;
+}
+
+.ai-doc-progress-wrap {
+  margin-bottom: 1.25rem;
+}
+
+.ai-doc-progress-bg {
+  height: 6px;
+  background: #E2E8F0;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ai-doc-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #0B3D91, #3B82F6);
+  transition: width 1s ease-out;
+}
+
+.ai-doc-scan-line {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: scanLine 2.5s ease-in-out infinite;
+}
+
+.ai-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ai-doc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #F1F5F9;
+  background: #FAFBFF;
+  transition: all 0.2s;
+}
+
+.ai-doc-item:hover {
+  border-color: #CBD5E1;
+  background: white;
+}
+
+.ai-doc-item.missing {
+  border-color: #FED7AA;
+  background: #FFFBF5;
+}
+
+.ai-doc-item-icon {
+  font-size: 0.938rem;
+  flex-shrink: 0;
+}
+
+.doc-status-ok {
+  color: #059669;
+}
+
+.doc-status-missing {
+  color: #D97706;
+}
+
+.ai-doc-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ai-doc-item-name {
+  display: block;
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.ai-doc-item-date {
+  display: block;
+  font-size: 0.688rem;
+  color: #94A3B8;
+  margin-top: 2px;
+}
+
+.ai-doc-item-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ai-doc-hash-badge {
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #D1FAE5;
+  color: #059669;
+  font-weight: 600;
+}
+
+.ai-doc-status-chip {
+  font-size: 0.688rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.ai-doc-status-chip.uploaded {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.ai-doc-status-chip.missing {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MARKET COMPARISON WIDGET
+   ═══════════════════════════════════════════════════════════════ */
+
+.ai-market-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-market-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF9933, #FFC107);
+}
+
+.ai-market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.ai-market-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.938rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ai-market-icon {
+  color: #FF9933;
+  font-size: 1rem;
+}
+
+.ai-market-deviation-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.25rem 0.625rem;
+  border-radius: 20px;
+  font-size: 0.813rem;
+  font-weight: 700;
+}
+
+.ai-market-deviation-badge.normal {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.ai-market-deviation-badge.significant {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.ai-market-deviation-badge.extreme {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.ai-market-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.ai-market-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.ai-market-bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.ai-market-val {
+  font-weight: 700;
+  color: #0F172A;
+  font-size: 0.875rem;
+}
+
+.ai-market-bar-track {
+  height: 10px;
+  background: #F1F5F9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ai-market-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1.2s ease-out;
+}
+
+.ai-market-bar-fill.property-bar {
+  background: linear-gradient(90deg, #0B3D91, #3B82F6);
+}
+
+.ai-market-bar-fill.average-bar {
+  background: linear-gradient(90deg, #64748B, #94A3B8);
+}
+
+.ai-market-stats {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.ai-market-stat {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.625rem;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border: 1px solid #F1F5F9;
+  text-align: center;
+}
+
+.ai-market-stat-label {
+  display: block;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94A3B8;
+  margin-bottom: 4px;
+}
+
+.ai-market-stat-value {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ai-market-verdict {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border-left: 3px solid;
+  background: #F8FAFC;
+  font-size: 0.813rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   ANOMALY TIMELINE
+   ═══════════════════════════════════════════════════════════════ */
+
+.ai-anomaly-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-anomaly-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+}
+
+.ai-anomaly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.ai-anomaly-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.938rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ai-anomaly-icon {
+  color: #7C3AED;
+  font-size: 1rem;
+}
+
+.ai-anomaly-count {
+  padding: 0.25rem 0.625rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.ai-anomaly-timeline {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.ai-anomaly-item {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.ai-anomaly-dot-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.ai-anomaly-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.ai-anomaly-line {
+  width: 2px;
+  flex: 1;
+  background: #E2E8F0;
+  margin: 4px 0;
+}
+
+.ai-anomaly-content {
+  flex: 1;
+  padding-bottom: 1rem;
+}
+
+.ai-anomaly-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 4px;
+}
+
+.ai-anomaly-severity {
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ai-anomaly-severity.critical {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.ai-anomaly-severity.warning {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.ai-anomaly-severity.info {
+  background: #DBEAFE;
+  color: #2563EB;
+}
+
+.ai-anomaly-type {
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.ai-anomaly-desc {
+  font-size: 0.75rem;
+  color: #64748B;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ai-anomaly-clean {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: #F0FDF4;
+  border-radius: 10px;
+  color: #059669;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.ai-anomaly-clean-icon {
+  font-size: 1.125rem;
+}
+
+/* AI Insights Section */
+.ai-insights-section {
+  border-top: 1px solid #F1F5F9;
+  padding-top: 1rem;
+}
+
+.ai-insights-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94A3B8;
+  margin: 0 0 0.75rem;
+}
+
+.ai-insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ai-insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.ai-insight-item.positive {
+  background: #F0FDF4;
+}
+
+.ai-insight-item.action {
+  background: #FFFBEB;
+}
+
+.ai-insight-item.info {
+  background: #EFF6FF;
+}
+
+.insight-positive { color: #059669; flex-shrink: 0; margin-top: 1px; }
+.insight-action { color: #D97706; flex-shrink: 0; margin-top: 1px; }
+.insight-info { color: #3B82F6; flex-shrink: 0; margin-top: 1px; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   NEW COMPONENTS RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .ai-dna-card,
+  .ai-doc-card,
+  .ai-market-card,
+  .ai-anomaly-card {
+    padding: 1.125rem;
+    border-radius: 12px;
+  }
+
+  .ai-dna-ring-wrap {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ai-dna-score {
+    font-size: 1.625rem;
+  }
+
+  .ai-market-stats {
+    flex-direction: column;
+  }
+
+  .ai-doc-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ai-doc-item-status {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

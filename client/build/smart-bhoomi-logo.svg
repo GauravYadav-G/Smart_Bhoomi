@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B3D91;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#072C6B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="landGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#138808;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D6B06;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9933;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E68A2E;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGrad)" filter="url(#shadow)"/>
+  
+  <!-- Tricolor accent bar at top -->
+  <rect x="96" y="56" width="107" height="6" rx="3" fill="#FF9933"/>
+  <rect x="203" y="56" width="106" height="6" rx="3" fill="#FFFFFF"/>
+  <rect x="309" y="56" width="107" height="6" rx="3" fill="#138808"/>
+
+  <!-- Smart building / land icon -->
+  <!-- Main building body -->
+  <rect x="176" y="180" width="160" height="140" rx="8" fill="#FFFFFF" opacity="0.95"/>
+  
+  <!-- Building roof / dome -->
+  <path d="M 256 120 L 348 180 L 164 180 Z" fill="url(#goldGrad)" opacity="0.95"/>
+  
+  <!-- Ashoka Chakra inspired circle on building -->
+  <circle cx="256" cy="155" r="18" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.9"/>
+  <circle cx="256" cy="155" r="3" fill="#FFFFFF" opacity="0.9"/>
+  <!-- Spokes -->
+  <line x1="256" y1="139" x2="256" y2="171" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+  <line x1="240" y1="155" x2="272" y2="155" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+  <line x1="244.7" y1="143.7" x2="267.3" y2="166.3" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+  <line x1="267.3" y1="143.7" x2="244.7" y2="166.3" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Building windows -->
+  <rect x="196" y="200" width="28" height="28" rx="4" fill="#0B3D91" opacity="0.3"/>
+  <rect x="242" y="200" width="28" height="28" rx="4" fill="#0B3D91" opacity="0.3"/>
+  <rect x="288" y="200" width="28" height="28" rx="4" fill="#0B3D91" opacity="0.3"/>
+  <rect x="196" y="244" width="28" height="28" rx="4" fill="#0B3D91" opacity="0.3"/>
+  <rect x="288" y="244" width="28" height="28" rx="4" fill="#0B3D91" opacity="0.3"/>
+  
+  <!-- Building door -->
+  <rect x="242" y="250" width="28" height="70" rx="4" fill="url(#goldGrad)" opacity="0.8"/>
+
+  <!-- Blockchain chain links below building -->
+  <g opacity="0.9">
+    <!-- Left chain link -->
+    <rect x="120" y="340" width="56" height="32" rx="16" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Center-left link -->
+    <rect x="160" y="340" width="56" height="32" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+    <!-- Center link -->
+    <rect x="200" y="340" width="56" height="32" rx="16" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Center-right link -->
+    <rect x="256" y="340" width="56" height="32" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+    <!-- Right-center link -->
+    <rect x="296" y="340" width="56" height="32" rx="16" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Right link -->
+    <rect x="336" y="340" width="56" height="32" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+  </g>
+
+  <!-- Land parcels / grid below -->
+  <g opacity="0.7">
+    <path d="M 140 400 L 190 390 L 210 410 L 160 420 Z" fill="url(#landGrad)"/>
+    <path d="M 200 388 L 260 380 L 280 400 L 220 408 Z" fill="#138808" opacity="0.8"/>
+    <path d="M 270 378 L 330 370 L 350 390 L 290 398 Z" fill="url(#landGrad)"/>
+    <path d="M 160 420 L 210 410 L 230 430 L 180 440 Z" fill="#138808" opacity="0.6"/>
+    <path d="M 220 408 L 280 400 L 300 420 L 240 428 Z" fill="url(#landGrad)" opacity="0.8"/>
+    <path d="M 290 398 L 350 390 L 370 410 L 310 418 Z" fill="#138808" opacity="0.6"/>
+  </g>
+
+  <!-- Digital / smart circuit dots -->
+  <circle cx="130" cy="260" r="4" fill="#FF9933" opacity="0.7"/>
+  <circle cx="130" cy="280" r="3" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="115" cy="270" r="3" fill="#138808" opacity="0.6"/>
+  <circle cx="382" cy="260" r="4" fill="#FF9933" opacity="0.7"/>
+  <circle cx="382" cy="280" r="3" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="397" cy="270" r="3" fill="#138808" opacity="0.6"/>
+  
+  <!-- Circuit lines -->
+  <line x1="130" y1="264" x2="130" y2="276" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <line x1="118" y1="270" x2="127" y2="263" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <line x1="382" y1="264" x2="382" y2="276" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <line x1="394" y1="270" x2="385" y2="263" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+</svg>

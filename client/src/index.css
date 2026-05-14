@@ -1,0 +1,169 @@
+/* ============================================
+   SMART BHOOMI — CSS RESET & BASE STYLES
+   Enterprise Design System 2026
+   ============================================ */
+
+/* ============================================
+   HTML & BODY
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  interpolate-size: allow-keywords;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100svh;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   MEDIA DEFAULTS
+   ============================================ */
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+  font-style: italic;
+}
+
+/* ============================================
+   FORM ELEMENT INHERITANCE
+   ============================================ */
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ============================================
+   TEXT OVERFLOW DEFAULTS
+   ============================================ */
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* ============================================
+   REMOVE LIST STYLES
+   ============================================ */
+
+ul, ol {
+  list-style: none;
+}
+
+/* ============================================
+   TABLE RESET
+   ============================================ */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ============================================
+   ROOT ELEMENT
+   ============================================ */
+
+#root {
+  isolation: isolate;
+  min-height: 100svh;
+}
+
+/* ============================================
+   SELECTION STYLE
+   ============================================ */
+
+::selection {
+  background: rgba(15, 76, 129, 0.15);
+  color: #0B3D91;
+}
+
+::-moz-selection {
+  background: rgba(15, 76, 129, 0.15);
+  color: #0B3D91;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR (WebKit)
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+/* ============================================
+   ACCESSIBILITY: SCREEN READER ONLY
+   ============================================ */
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* ============================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================ */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}

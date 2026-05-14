@@ -1,0 +1,813 @@
+/* =============================================
+   PROPERTY LIST - GOVERNMENT OF INDIA PORTAL
+   Following GIGW 3.0, RERA & Property Search Standards
+   COMPLETE FIXED VERSION - No Word Breaking Issues
+   ============================================= */
+
+/* Root Variables - GOI DBIM Standard Colors */
+:root {
+  /* Primary Palette - Government Blue Group */
+  --color-primary: #0B3D91 !important;
+  --color-primary-dark: #072C6B !important;
+  --color-accent: #0D6EFD !important;
+
+  /* Text Colors - DBIM Standard */
+  --color-text: #150202 !important;
+  --color-text-secondary: #3D3D3D !important;
+  --color-label: #606060 !important;
+
+  /* Surfaces - DBIM Neutral Palette */
+  --color-bg: #F5F5F5 !important;
+  --color-surface: #FFFFFF !important;
+  --color-surface-variant: #FAFAFA !important;
+  --color-border: #C6C6C6 !important;
+
+  /* Status Colors - DBIM Functional Palette */
+  --color-success: #198754 !important;
+  --color-danger: #DC3545 !important;
+  --color-warning: #FFC107 !important;
+  --color-info: #0D6EFD !important;
+
+  /* Spacing & Radius */
+  --radius-xs: 8px !important;
+  --radius-sm: 10px !important;
+  --radius-md: 12px !important;
+  --radius-lg: 16px !important;
+  --radius-xl: 20px !important;
+  --radius-pill: 9999px !important;
+
+  --space-xs: 8px !important;
+  --space-sm: 12px !important;
+  --space-md: 16px !important;
+  --space-lg: 24px !important;
+  --space-xl: 32px !important;
+
+  /* Elevation - GOI Style */
+  --elevation-1: 0 1px 3px rgba(21, 2, 2, 0.08) !important;
+  --elevation-2: 0 4px 12px rgba(21, 2, 2, 0.12) !important;
+  --elevation-3: 0 8px 24px rgba(21, 2, 2, 0.15) !important;
+}
+
+/* Page Wrapper */
+.property-list-page {
+  background: var(--color-bg) !important;
+  min-height: 100vh !important;
+  color: var(--color-text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  padding-bottom: 56px !important;
+}
+
+/* Hero Section - Government Identity (Sticky without navbar collision) */
+.page-hero {
+  background: linear-gradient(135deg, #0B3D91 0%, #072C6B 100%) !important;
+  padding: 14px 24px 12px !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(15, 76, 129, 0.2) !important;
+  position: sticky !important;
+  top: 64px !important;
+  z-index: 90 !important;
+  border-radius: 0 0 12px 12px !important;
+  border-bottom: 2px solid #FFC107 !important;
+  transition: padding 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: transform !important;
+  transform: translateZ(0) !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+}
+
+.page-hero.scrolled {
+  padding: 8px 24px 6px !important;
+  box-shadow: 0 6px 24px rgba(15, 76, 129, 0.3) !important;
+}
+
+.page-hero h1,
+.page-hero .page-title {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  transition: font-size 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.page-hero.scrolled h1,
+.page-hero.scrolled .page-title {
+  font-size: 1.15rem !important;
+}
+
+.page-hero p,
+.page-hero .page-subtitle {
+  font-size: 0.8rem !important;
+  margin: 2px 0 0 !important;
+  opacity: 0.85 !important;
+  line-height: 1.2 !important;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              max-height 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              margin 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+}
+
+.page-hero.scrolled p,
+.page-hero.scrolled .page-subtitle {
+  opacity: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+}
+
+.page-hero .stats-bar {
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              max-height 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              padding 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  max-height: 80px !important;
+  overflow: hidden !important;
+}
+
+.page-hero.scrolled .stats-bar {
+  opacity: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+}
+
+.page-hero .btn-register-property {
+  transition: padding 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              font-size 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.25s ease,
+              box-shadow 0.25s ease !important;
+}
+
+.page-hero.scrolled .btn-register-property {
+  padding: 6px 14px !important;
+  font-size: 0.75rem !important;
+}
+
+.hero-content {
+  transition: margin 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.page-hero.scrolled .hero-content {
+  margin-bottom: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 12px 16px 10px !important;
+  }
+  
+  .page-hero h1,
+  .page-hero .page-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .page-hero p,
+  .page-hero .page-subtitle {
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero {
+    padding: 10px 12px 8px !important;
+    top: 56px !important;
+  }
+}
+
+/* National Emblem - Indian Flag Colors */
+.page-hero::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 33%, #138808 66%, #000080 100%) !important;
+  z-index: 2 !important;
+}
+
+.page-hero::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+.hero-content {
+  max-width: 1280px !important;
+  margin: 0 auto 8px !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 16px !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.hero-text h1 {
+  margin: 0 0 10px 0 !important;
+  font-size: clamp(28px, 4.2vw, 46px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.15 !important;
+  color: #ffffff !important;
+}
+
+.hero-text p {
+  margin: 0 !important;
+  opacity: 0.92 !important;
+  font-size: clamp(14px, 2.2vw, 18px) !important;
+  color: #ffffff !important;
+  font-weight: 400 !important;
+}
+
+/* CTA Button - GOI Standard */
+.btn-register-property {
+  background: #fff !important;
+  color: var(--color-primary) !important;
+  border: none !important;
+  border-radius: var(--radius-md) !important;
+  padding: 14px 22px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  box-shadow: var(--elevation-2) !important;
+  text-decoration: none !important;
+  user-select: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  cursor: pointer !important;
+}
+
+.btn-register-property:hover,
+.btn-register-property:focus-visible {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--elevation-3) !important;
+  outline: none !important;
+}
+
+/* Stats Bar - RERA Style */
+.stats-bar {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 4px 0 0 !important;
+  display: flex !important;
+  gap: 12px !important;
+  user-select: none !important;
+  transition: margin 0.25s ease !important;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 6px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: #fff !important;
+  cursor: default !important;
+}
+
+.stat-icon {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 13px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.stat-info {
+  display: grid !important;
+  gap: 1px !important;
+  min-width: 50px !important;
+}
+
+.stat-value {
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.stat-label {
+  font-size: 0.625rem !important;
+  font-weight: 600 !important;
+  opacity: 0.9 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+/* Controls Section */
+.controls-section {
+  max-width: 1280px !important;
+  margin: 20px auto 18px !important;
+  padding: 0 24px !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto auto !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.search-bar {
+  position: relative !important;
+  background: var(--color-surface) !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  display: flex !important;
+  align-items: center !important;
+  box-shadow: var(--elevation-1) !important;
+}
+
+.search-icon {
+  color: var(--color-label) !important;
+  margin-left: 14px !important;
+  font-size: 18px !important;
+  pointer-events: none !important;
+}
+
+.search-input {
+  flex: 1 !important;
+  border: none !important;
+  outline: none !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  border-radius: var(--radius-md) !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+  color: var(--color-text) !important;
+  font-family: inherit !important;
+}
+
+.search-input:focus {
+  background: white !important;
+}
+
+.btn-filter,
+.btn-clear {
+  background: var(--color-surface) !important;
+  border: 2px solid var(--color-border) !important;
+  color: var(--color-text) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 10px 16px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  box-shadow: var(--elevation-1) !important;
+  transition: all 0.2s !important;
+  font-family: inherit !important;
+}
+
+.btn-filter:hover,
+.btn-clear:hover {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+/* Filter Panel - GOI Search Style */
+.filters-panel {
+  max-width: 1280px !important;
+  margin: 8px auto 20px !important;
+  padding: 18px 24px !important;
+  background: var(--color-surface) !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--elevation-2) !important;
+}
+
+.filter-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.filter-item label {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: var(--color-text-secondary) !important;
+  margin-bottom: 8px !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+}
+
+.filter-select,
+.filter-input {
+  width: 100% !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  color: var(--color-text) !important;
+  outline: none !important;
+  font-weight: 600 !important;
+  background: var(--color-surface-variant) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  font-family: inherit !important;
+  transition: all 0.2s !important;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.15) !important;
+  background: white !important;
+}
+
+/* Results Header */
+.results-header {
+  max-width: 1280px !important;
+  margin: 0 auto 14px !important;
+  padding: 0 24px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  color: var(--color-text) !important;
+}
+
+/* Properties Grid */
+.properties-grid {
+  max-width: 1280px !important;
+  margin: 0 auto 36px !important;
+  padding: 0 24px !important;
+  display: grid !important;
+  grid-template-columns: repeat(12, 1fr) !important;
+  gap: 24px !important;
+}
+
+.property-card {
+  grid-column: span 12 !important;
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--elevation-1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease !important;
+}
+
+@media (min-width: 700px) {
+  .property-card {
+    grid-column: span 6 !important;
+  }
+}
+
+@media (min-width: 1100px) {
+  .property-card {
+    grid-column: span 4 !important;
+  }
+}
+
+.property-card:hover,
+.property-card:focus-within {
+  transform: translateY(-4px) !important;
+  border-color: var(--color-primary) !important;
+  box-shadow: var(--elevation-2) !important;
+}
+
+/* Card Header */
+.card-header {
+  padding: 16px 20px !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 12px !important;
+  align-items: center !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  background: var(--color-surface-variant) !important;
+}
+
+.property-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 12px !important;
+  background: #E8EAF6 !important;
+  color: var(--color-text) !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: capitalize !important;
+}
+
+.status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 12px !important;
+  border-radius: var(--radius-pill) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  border: 2px solid #A5D6A7 !important;
+  background: #E8F5E9 !important;
+  color: #2E7D32 !important;
+}
+
+/* Verified Badge */
+.status-badge.verified {
+  background: #E8F5E9 !important;
+  color: #2E7D32 !important;
+  border-color: #A5D6A7 !important;
+}
+
+/* Card Body */
+.card-body {
+  padding: 18px 20px !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.property-title {
+  margin: 0 0 4px 0 !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em !important;
+  color: var(--color-text) !important;
+  line-height: 1.3 !important;
+}
+
+.property-location {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: var(--color-text-secondary) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+}
+
+/* === FIXED: Property Info Grid - No Character Breaking === */
+.property-info {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 8px !important;
+}
+
+/* === FIXED: Info Item - Proper Spacing === */
+.info-item {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 14px !important;
+  border-radius: var(--radius-sm) !important;
+  background: var(--color-surface-variant) !important;
+  border: 1px solid var(--color-border) !important;
+  min-width: 0 !important;
+}
+
+.info-icon {
+  width: 32px !important;
+  height: 32px !important;
+  background: #E8EAF6 !important;
+  color: var(--color-primary) !important;
+  border-radius: var(--radius-xs) !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 1rem !important;
+  flex-shrink: 0 !important;
+}
+
+.info-label {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  color: var(--color-label) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.2 !important;
+}
+
+/* === CRITICAL FIX: Info Value - Prevents Character Breaking === */
+.info-value {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: var(--color-text) !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: none !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+}
+
+/* Blockchain Info - hidden */
+.blockchain-info,
+.blockchain-hash {
+  display: none !important;
+}
+
+/* Card Footer */
+.card-footer {
+  padding: 16px 20px 20px !important;
+  border-top: 1px solid var(--color-border) !important;
+  background: var(--color-bg) !important;
+  margin-top: auto !important;
+}
+
+.btn-view-details {
+  width: 100% !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 16px !important;
+  background: linear-gradient(135deg, #0B3D91 0%, #0D6EFD 100%) !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: var(--elevation-1) !important;
+  transition: all 0.2s !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.btn-view-details:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--elevation-2) !important;
+  filter: brightness(0.95) !important;
+}
+
+/* Loading State */
+.loading-state {
+  max-width: 1280px !important;
+  margin: 44px auto !important;
+  padding: 0 24px !important;
+  text-align: center !important;
+  color: var(--color-text-secondary) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.spinner {
+  margin: 0 auto 12px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border: 5px solid var(--color-border) !important;
+  border-top-color: var(--color-primary) !important;
+  border-radius: 50% !important;
+  animation: spin 0.8s linear infinite !important;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.empty-state {
+  max-width: 560px !important;
+  margin: 28px auto 56px !important;
+  padding: 28px 24px !important;
+  background: var(--color-surface) !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  text-align: center !important;
+  color: var(--color-text-secondary) !important;
+  box-shadow: var(--elevation-1) !important;
+}
+
+.empty-icon {
+  font-size: 64px !important;
+  color: var(--color-border) !important;
+  margin-bottom: 16px !important;
+}
+
+.empty-state h3 {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: var(--color-text) !important;
+  margin-bottom: 10px !important;
+}
+
+.empty-state p {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.btn-register-empty {
+  margin-top: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 16px !important;
+  background: linear-gradient(135deg, #0B3D91 0%, #0D6EFD 100%) !important;
+  border-radius: var(--radius-md) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  box-shadow: var(--elevation-1) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.btn-register-empty:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--elevation-2) !important;
+}
+
+/* Focus States - GIGW Accessibility */
+*:focus-visible {
+  outline: 3px solid var(--color-primary) !important;
+  outline-offset: 2px !important;
+}
+
+/* Motion Reduction - WCAG Compliance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .filter-grid {
+    grid-template-columns: repeat(3, minmax(180px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .controls-section {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .stats-bar {
+    grid-template-columns: 1fr !important;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .property-info {
+    grid-template-columns: 1fr !important;
+  }
+
+  .page-hero {
+    padding: 28px 18px 24px !important;
+  }
+
+  .controls-section,
+  .results-header,
+  .properties-grid {
+    padding: 0 18px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .property-info {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1099px) {
+  .property-card {
+    grid-column: span 6 !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .properties-grid {
+    gap: 28px !important;
+  }
+}
+
+/* Print Styles - Government Document */
+@media print {
+  .page-hero,
+  .controls-section,
+  .btn-register-property,
+  .btn-view-details {
+    display: none !important;
+  }
+
+  .property-card {
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+}

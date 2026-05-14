@@ -1,0 +1,32 @@
+{
+  "model": "RandomForestClassifier",
+  "n_estimators": 100,
+  "class_weight": "balanced",
+  "training_samples": 160,
+  "test_samples": 40,
+  "training_time_s": 0.129,
+  "test_accuracy": 0.975,
+  "test_precision": 1.0,
+  "test_recall": 0.9167,
+  "test_f1": 0.9565,
+  "test_roc_auc": 1.0,
+  "confusion_matrix": {
+    "TN": 28,
+    "FP": 0,
+    "FN": 1,
+    "TP": 11
+  },
+  "cv_5fold_f1_mean": 0.9644,
+  "cv_5fold_f1_std": 0.0338,
+  "cv_5fold_acc_mean": 0.98,
+  "feature_importance": {
+    "has_tax_receipt": 0.2064,
+    "doc_count": 0.1907,
+    "valuation_log": 0.1647,
+    "kyc_level_numeric": 0.14,
+    "has_ownership_deed": 0.1219,
+    "registration_hour": 0.0925,
+    "has_sale_deed": 0.0765,
+    "coord_conflict_flag": 0.0073
+  }
+}

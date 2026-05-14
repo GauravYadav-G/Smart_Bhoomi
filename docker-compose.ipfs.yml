@@ -1,0 +1,90 @@
+# ═══════════════════════════════════════════════════════════════
+# SMARTBHOOMI — Private IPFS Kubo Node (Government Data Sovereignty)
+# ═══════════════════════════════════════════════════════════════
+#
+# Usage:
+#   docker compose -f docker-compose.ipfs.yml up -d
+#
+# Config:
+#   - Private swarm (no public DHT/bootstrap)
+#   - API bound to localhost only
+#   - GC disabled (permanent pinning)
+#   - 10GB storage limit
+#   - CORS enabled for SmartBhoomi frontend
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  ipfs-node:
+    image: ipfs/kubo:v0.34.1
+    container_name: smartbhoomi-ipfs
+    restart: unless-stopped
+    ports:
+      # API — mapped to 5002 to avoid conflict with Express on 5001
+      - "127.0.0.1:5002:5001"
+      # Gateway — localhost only
+      - "127.0.0.1:8080:8080"
+      # Swarm — disabled for private node (not published)
+      # - "4001:4001"
+    volumes:
+      - ipfs_data:/data/ipfs
+      - ipfs_staging:/export
+    environment:
+      # Private network — generate swarm key with:
+      #   echo -e "/key/swarm/psk/1.0.0/\n/base16/\n$(openssl rand -hex 32)" > swarm.key
+      - IPFS_PROFILE=server
+      - IPFS_PATH=/data/ipfs
+    entrypoint: /bin/sh
+    command: >
+      -c "
+        # Initialize IPFS if not already done
+        if [ ! -f /data/ipfs/config ]; then
+          ipfs init --profile server;
+        fi;
+
+        # Remove all bootstrap peers (private network)
+        ipfs bootstrap rm --all;
+
+        # Disable public DHT routing
+        ipfs config Routing.Type none;
+
+        # API: bind to all interfaces inside container (port-mapped to localhost)
+        ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001;
+        ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080;
+
+        # Disable swarm listening (fully private)
+        ipfs config --json Addresses.Swarm '[]';
+
+        # CORS for SmartBhoomi frontend
+        ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '[\"http://localhost:3000\", \"http://localhost:5001\"]';
+        ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '[\"PUT\", \"POST\", \"GET\"]';
+        ipfs config --json API.HTTPHeaders.Access-Control-Allow-Headers '[\"Authorization\"]';
+
+        # Disable garbage collection (all data is permanently pinned)
+        ipfs config --json Datastore.GCPeriod '\"0s\"';
+
+        # Storage limit
+        ipfs config --json Datastore.StorageMax '\"10GB\"';
+
+        # Start IPFS daemon (no public network)
+        ipfs daemon --enable-gc=false --routing=none;
+      "
+    healthcheck:
+      test: ["CMD", "ipfs", "id"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "1.0"
+        reservations:
+          memory: 512M
+          cpus: "0.25"
+
+volumes:
+  ipfs_data:
+    driver: local
+  ipfs_staging:
+    driver: local
