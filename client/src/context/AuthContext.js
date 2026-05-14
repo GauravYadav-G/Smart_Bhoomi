@@ -1,7 +1,11 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 import { authAPI } from '../services/api';
 
 const AuthContext = createContext();
+
+// Session timeout configuration (in milliseconds)
+const SESSION_TIMEOUT = 10 * 60 * 1000; // 10 minutes
+const INACTIVITY_CHECK_INTERVAL = 1000; // Check every 1 second
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -19,6 +23,13 @@ export const AuthProvider = ({ children }) => {
   });
   const [loading, setLoading] = useState(true);
   const [biometricAuthEnabled, setBiometricAuthEnabled] = useState(true);
+  const [sessionTimeoutWarning, setSessionTimeoutWarning] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(SESSION_TIMEOUT);
+  
+  // Refs for tracking activity and timeouts
+  const inactivityTimerRef = useRef(null);
+  const warningTimerRef = useRef(null);
+  const lastActivityRef = useRef(Date.now());
 
   useEffect(() => {
     const loadUser = async () => {
@@ -27,6 +38,8 @@ export const AuthProvider = ({ children }) => {
           const response = await authAPI.getProfile();
           setUser(response.data.user);
           setBiometricAuthEnabled(response.data.user.biometricAuthEnabled !== false);
+          // Reset last activity on successful user load
+          lastActivityRef.current = Date.now();
         } catch (error) {
           console.error('Failed to load user:', error);
           logout();
@@ -36,6 +49,80 @@ export const AuthProvider = ({ children }) => {
     };
 
     loadUser();
+  }, [token]);
+
+  // ═══════════════════════════════════════════════════════════════════
+  // SESSION TIMEOUT & INACTIVITY MONITORING
+  // ═══════════════════════════════════════════════════════════════════
+  
+  const resetInactivityTimer = () => {
+    lastActivityRef.current = Date.now();
+    setSessionTimeoutWarning(false);
+    setTimeRemaining(SESSION_TIMEOUT);
+    
+    // Clear existing timers
+    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+    if (warningTimerRef.current) clearTimeout(warningTimerRef.current);
+    
+    if (!token) return;
+    
+    // Show warning 1 minute before timeout (9 minutes of inactivity)
+    warningTimerRef.current = setTimeout(() => {
+      setSessionTimeoutWarning(true);
+      console.warn('⏱️ Session timeout warning: 1 minute remaining');
+    }, SESSION_TIMEOUT - 60000);
+    
+    // Logout after 10 minutes of inactivity
+    inactivityTimerRef.current = setTimeout(() => {
+      console.warn('⏱️ Session expired due to inactivity');
+      logout();
+    }, SESSION_TIMEOUT);
+  };
+
+  // Set up activity event listeners for user interactions
+  useEffect(() => {
+    if (!token) {
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+      if (warningTimerRef.current) clearTimeout(warningTimerRef.current);
+      return;
+    }
+
+    // Track user activity on various events
+    const events = ['mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
+    
+    const handleActivity = () => {
+      const timeSinceLastActivity = Date.now() - lastActivityRef.current;
+      
+      // Only reset timer if at least 1 second has passed since last activity
+      if (timeSinceLastActivity > 1000) {
+        resetInactivityTimer();
+      }
+    };
+
+    // Add event listeners
+    events.forEach(event => {
+      document.addEventListener(event, handleActivity, true);
+    });
+
+    // Initial timer setup
+    resetInactivityTimer();
+
+    // Update time remaining every second for display
+    const countdownInterval = setInterval(() => {
+      const elapsed = Date.now() - lastActivityRef.current;
+      const remaining = Math.max(0, SESSION_TIMEOUT - elapsed);
+      setTimeRemaining(remaining);
+    }, 1000);
+
+    // Cleanup
+    return () => {
+      events.forEach(event => {
+        document.removeEventListener(event, handleActivity, true);
+      });
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+      if (warningTimerRef.current) clearTimeout(warningTimerRef.current);
+      clearInterval(countdownInterval);
+    };
   }, [token]);
 
   const login = async (email, password) => {
@@ -116,11 +203,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    // Clear timers
+    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+    if (warningTimerRef.current) clearTimeout(warningTimerRef.current);
+    
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setToken(null);
     setUser(null);
     setBiometricAuthEnabled(true);
+    setSessionTimeoutWarning(false);
+    setTimeRemaining(SESSION_TIMEOUT);
   };
 
   const toggleBiometricAuth = async (enabled) => {
@@ -132,6 +225,11 @@ export const AuthProvider = ({ children }) => {
       console.error('Failed to toggle biometric auth:', error);
       throw error;
     }
+  };
+
+  const extendSession = () => {
+    setSessionTimeoutWarning(false);
+    resetInactivityTimer();
   };
 
   const value = {
@@ -147,6 +245,11 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!token,
     biometricAuthEnabled,
     toggleBiometricAuth,
+    // Session timeout features
+    sessionTimeoutWarning,
+    timeRemaining,
+    extendSession,
+    SESSION_TIMEOUT,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

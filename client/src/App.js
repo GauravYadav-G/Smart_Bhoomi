@@ -7,6 +7,7 @@ import { IntelligenceProvider } from './context/IntelligenceContext';
 import { BlockchainProvider } from './context/BlockchainContext';
 import { AdminAuthProvider, useAdminAuth } from './admin/context/AdminAuthContext';
 import Navbar from './components/Navbar';
+import SessionTimeoutWarning from './components/SessionTimeoutWarning';
 import './App.css';
 
 // Lazy-loaded pages — each becomes a separate chunk
@@ -132,6 +133,7 @@ function AppRoutes() {
           </Suspense>
         </div>
         {!isAdminRoute && <ToastContainer position="top-right" autoClose={3000} />}
+        <SessionTimeoutWarning />
       </div>
   );
 }
@@ -142,7 +144,9 @@ function App() {
       <AuthProvider>
         <IntelligenceProvider>
           <AdminAuthProvider>
-            <AppRoutes />
+            <BlockchainProvider>
+              <AppRoutes />
+            </BlockchainProvider>
           </AdminAuthProvider>
         </IntelligenceProvider>
       </AuthProvider>
