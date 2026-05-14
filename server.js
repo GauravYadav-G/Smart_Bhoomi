@@ -45,6 +45,11 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Serve uploaded files
 app.use('/uploads', express.static('uploads'));
 
+// Serve React frontend
+const path = require('path');
+const frontendBuildPath = path.join(__dirname, 'client', 'build');
+app.use(express.static(frontendBuildPath));
+
 // Request logging middleware
 app.use((req, res, next) => {
   const timestamp = new Date().toISOString();
@@ -167,6 +172,15 @@ process.on('unhandledRejection', (err) => {
 });
 
 // Handle uncaught exceptions
+// SPA fallback route - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  } else {
+    res.status(404).json({ error: 'API endpoint not found' });
+  }
+});
+
 process.on('uncaughtException', (err) => {
   console.error('❌ UNCAUGHT EXCEPTION:', err.message);
   console.error('Stack:', err.stack);
