@@ -210,8 +210,11 @@ const SpatialConflictPanel = () => {
         <div style={styles.mapWrap}>
           <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ width: '100%', height: 480, borderRadius: 12 }} scrollWheelZoom={true}>
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              crossOrigin="anonymous"
+              maxZoom={19}
+              opacity={0.9}
             />
             <FitBounds properties={properties} />
 

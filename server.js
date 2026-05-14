@@ -21,7 +21,19 @@ const io = initializeWebSocket(server);
 
 // Middleware
 app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" }
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "unpkg.com", "cdn.jsdelivr.net"],
+      styleSrc: ["'self'", "'unsafe-inline'", "unpkg.com", "cdn.jsdelivr.net"],
+      imgSrc: ["'self'", "data:", "https:", "http://", "tile.openstreetmap.org", "*.tile.openstreetmap.org", "raw.githubusercontent.com"],
+      fontSrc: ["'self'", "data:", "fonts.googleapis.com", "fonts.gstatic.com"],
+      connectSrc: ["'self'", "https:", "http://", "*.tile.openstreetmap.org", "tile.openstreetmap.org"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'self'"],
+    },
+  },
 }));
 
 app.use(cors({
