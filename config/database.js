@@ -49,6 +49,40 @@ const connectDatabase = async () => {
     console.log(`   Host: ${conn.connection.host}`);
     console.log(`   Database: ${conn.connection.name}`);
     console.log(`   State: Connected\n`);
+
+    // Auto-seed default admin account if not present
+    try {
+      const Admin = require('../models/Admin');
+      const adminEmail = 'admin@gov.in';
+      const existing = await Admin.findOne({ email: adminEmail });
+      if (!existing) {
+        console.log('📝 Seeding default admin account into database...');
+        await Admin.create({
+          name: 'Dr. Rajesh Kumar Sharma',
+          email: adminEmail,
+          password: 'Admin@12345678',
+          employeeId: 'GOV-2024-001',
+          rank: 'Secretary',
+          department: 'Revenue & Land Records',
+          jurisdiction: {
+            state: 'All India',
+            district: '',
+            level: 'national'
+          },
+          clearanceLevel: 5,
+          isSuperAdmin: true,
+          stats: {
+            propertiesVerified: 142,
+            transfersApproved: 67,
+            fraudsFlagged: 8,
+            loginCount: 0
+          }
+        });
+        console.log('✅ Default admin account seeded successfully.');
+      }
+    } catch (seedError) {
+      console.error('⚠️ Failed to auto-seed default admin:', seedError.message);
+    }
   } catch (error) {
     console.error(`❌ Database Connection Error: ${error.message}`);
     if (process.env.NODE_ENV === 'development') {
