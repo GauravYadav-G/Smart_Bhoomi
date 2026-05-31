@@ -898,7 +898,7 @@
 .ad-properties-view {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .ad-section-header-row {
@@ -937,9 +937,55 @@
   transform: translateX(-2px);
 }
 
-/* Search Filters Bento Strip */
-.ad-search-filters-row {
+/* Stats Bar */
+.ad-prop-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.ad-prop-stat {
   display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.2s;
+}
+.ad-prop-stat:hover {
+  transform: translateY(-2px);
+}
+.ad-prop-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+.ad-prop-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+.ad-prop-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.ad-prop-stat-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+/* Filters & Search */
+.ad-filters-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 16px;
   background: var(--bg-card);
   backdrop-filter: blur(14px);
@@ -947,11 +993,21 @@
   padding: 16px 20px;
   border-radius: var(--radius-md);
   flex-wrap: wrap;
+  box-shadow: var(--glass-shadow);
 }
-.ad-search-box {
+.ad-search-wrap {
   position: relative;
   flex: 1;
-  min-width: 240px;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+}
+.ad-search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  pointer-events: none;
 }
 .ad-search-input {
   width: 100%;
@@ -960,71 +1016,93 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #ffffff;
   outline: none;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary);
   transition: all 0.2s;
 }
 .ad-search-input:focus {
   border-color: var(--deep-navy-light);
   box-shadow: 0 0 0 3px rgba(26, 91, 196, 0.12);
 }
-.ad-search-icon {
+.ad-search-clear {
   position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 12px;
+  background: none;
+  border: none;
   color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
   font-size: 0.88rem;
 }
-
-.ad-filters-group {
+.ad-search-clear:hover {
+  color: var(--text-primary);
+}
+.ad-filter-group {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
-.ad-filter-select, .ad-sort-select {
-  padding: 10px 16px;
+.ad-filter-select {
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #ffffff;
   outline: none;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.ad-filter-select:focus, .ad-sort-select:focus {
+.ad-filter-select:focus {
   border-color: var(--deep-navy-light);
 }
 
-.ad-properties-grid {
+/* Property Cards Grid */
+.ad-property-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
-.ad-property-card {
+.ad-prop-card {
   background: var(--bg-card);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   box-shadow: var(--glass-shadow);
   transition: all 0.25s var(--transition-smooth);
+  position: relative;
 }
-.ad-property-card:hover {
+.ad-prop-card:hover {
   transform: translateY(-3px);
   border-color: var(--glass-border-strong);
   box-shadow: var(--glass-shadow-hover);
 }
-
-.ad-prop-card-header {
+.ad-prop-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
+}
+.ad-prop-card-type {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  background: rgba(11, 61, 145, 0.05);
+  color: var(--deep-navy-light);
+  border-radius: 4px;
+}
+.ad-prop-card-badges {
+  display: flex;
+  gap: 6px;
 }
 .ad-prop-card-title {
   margin: 0;
@@ -1032,37 +1110,151 @@
   font-size: 0.95rem;
   font-weight: 800;
   color: var(--text-primary);
-  line-height: 1.3;
+  line-height: 1.35;
 }
-.ad-prop-card-body {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-}
-.ad-prop-card-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  border-top: 1px solid var(--glass-border);
-  padding-top: 12px;
-}
-.ad-prop-card-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.ad-prop-card-id {
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-tertiary);
-  font-weight: 500;
+  margin: 0;
+  font-weight: 600;
 }
-.ad-prop-card-meta-item svg {
-  color: var(--text-muted);
+.ad-prop-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 12px 0;
+}
+.ad-prop-card-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+.ad-prop-card-detail svg {
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.ad-pcd-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: block;
+}
+.ad-pcd-value {
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90px;
+}
+.ad-pcd-value.score {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.ad-pcd-value.score.high {
+  color: var(--gov-green);
+}
+.ad-pcd-value.score.mid {
+  color: #D97706;
+}
+.ad-pcd-value.score.low {
+  color: #DC2626;
+}
+.ad-prop-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.ad-prop-card-date {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
 }
 .ad-prop-card-actions {
   display: flex;
-  gap: 8px;
-  margin-top: auto;
-  border-top: 1px solid var(--glass-border);
-  padding-top: 12px;
+  gap: 6px;
+}
+.ad-pca-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #ffffff;
+  color: var(--text-secondary);
+}
+.ad-pca-btn:hover {
+  background: var(--bg-page);
+  border-color: var(--glass-border-strong);
+  color: var(--text-primary);
+}
+.ad-pca-btn.view {
+  color: var(--deep-navy-light);
+}
+.ad-pca-btn.view:hover {
+  background: rgba(26, 91, 196, 0.05);
+  border-color: var(--deep-navy-light);
+}
+.ad-pca-btn.approve {
+  color: var(--gov-green);
+}
+.ad-pca-btn.approve:hover {
+  background: var(--gov-green-bg);
+  border-color: var(--gov-green);
+}
+.ad-pca-btn.delete {
+  color: #EF4444;
+}
+.ad-pca-btn.delete:hover {
+  background: #FEF2F2;
+  border-color: #EF4444;
+}
+
+.ad-empty-state-large {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.ad-empty-state-large h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-primary);
+}
+.ad-empty-state-large p {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin: 0;
 }
 
 /* Badges styling */
