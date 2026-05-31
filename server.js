@@ -26,7 +26,7 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'", "unpkg.com", "cdn.jsdelivr.net"],
-      styleSrc: ["'self'", "'unsafe-inline'", "unpkg.com", "cdn.jsdelivr.net"],
+      styleSrc: ["'self'", "'unsafe-inline'", "unpkg.com", "cdn.jsdelivr.net", "fonts.googleapis.com"],
       imgSrc: ["'self'", "data:", "https:", "http://", "tile.openstreetmap.org", "*.tile.openstreetmap.org", "raw.githubusercontent.com"],
       fontSrc: ["'self'", "data:", "fonts.googleapis.com", "fonts.gstatic.com"],
       connectSrc: ["'self'", "https:", "http://", "*.tile.openstreetmap.org", "tile.openstreetmap.org"],
