@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0E0630 0%, #1D0A69 40%, #12074A 70%, #0A0428 100%);
+  background: linear-gradient(135deg, #072C6B 0%, #0B3D91 40%, #12074A 70%, #0A0428 100%);
   position: relative;
   overflow: hidden;
   font-family: 'Inter', 'IBM Plex Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -20,7 +20,7 @@
   background:
     radial-gradient(ellipse 600px 400px at 20% 30%, rgba(255, 153, 51, 0.08), transparent),
     radial-gradient(ellipse 500px 500px at 80% 70%, rgba(19, 136, 8, 0.06), transparent),
-    radial-gradient(ellipse 400px 300px at 50% 50%, rgba(29, 10, 105, 0.15), transparent);
+    radial-gradient(ellipse 400px 300px at 50% 50%, rgba(11, 61, 145, 0.15), transparent);
   pointer-events: none;
 }
 
@@ -59,7 +59,7 @@
   justify-content: center;
   margin: 0 auto 16px;
   font-size: 1.8rem;
-  color: #1D0A69;
+  color: #0B3D91;
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.15);
@@ -155,8 +155,8 @@
 }
 
 .admin-form-group input:focus {
-  border-color: #1D0A69;
-  box-shadow: 0 0 0 3px rgba(29, 10, 105, 0.12);
+  border-color: #0B3D91;
+  box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.12);
   background: white;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .admin-eye-btn:hover {
-  color: #1D0A69;
+  color: #0B3D91;
 }
 
 /* ── MFA Input ── */
@@ -214,13 +214,13 @@
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #1D0A69, #3B1FBF);
+  background: linear-gradient(135deg, #0B3D91, #1A5BC4);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
   color: white;
-  box-shadow: 0 4px 16px rgba(29, 10, 105, 0.25);
+  box-shadow: 0 4px 16px rgba(11, 61, 145, 0.25);
 }
 
 .admin-mfa-icon.verify {
@@ -268,11 +268,11 @@
 .admin-mfa-manual code {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
-  color: #1D0A69;
-  background: rgba(29, 10, 105, 0.06);
+  color: #0B3D91;
+  background: rgba(11, 61, 145, 0.06);
   padding: 4px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(29, 10, 105, 0.15);
+  border: 1px solid rgba(11, 61, 145, 0.15);
   word-break: break-all;
 }
 
@@ -286,19 +286,19 @@
   padding: 14px;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(135deg, #1D0A69, #3B1FBF);
+  background: linear-gradient(135deg, #0B3D91, #1A5BC4);
   color: white;
   font-size: 0.88rem;
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 16px rgba(29, 10, 105, 0.25);
+  box-shadow: 0 4px 16px rgba(11, 61, 145, 0.25);
 }
 
 .admin-login-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(29, 10, 105, 0.35);
+  box-shadow: 0 8px 28px rgba(11, 61, 145, 0.35);
   background: linear-gradient(135deg, #2A0F8E, #4B29D4);
 }
 
@@ -325,9 +325,9 @@
 }
 
 .admin-back-btn:hover {
-  border-color: #1D0A69;
-  color: #1D0A69;
-  background: rgba(29, 10, 105, 0.04);
+  border-color: #0B3D91;
+  color: #0B3D91;
+  background: rgba(11, 61, 145, 0.04);
 }
 
 .admin-spinner {
@@ -412,15 +412,15 @@
   width: 62px;
   height: 62px;
   border-radius: 18px;
-  background: linear-gradient(135deg, #1D0A69, #3B1FBF);
+  background: linear-gradient(135deg, #0B3D91, #1A5BC4);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
   color: white;
   box-shadow:
-    0 6px 24px rgba(29, 10, 105, 0.3),
-    0 0 0 3px rgba(29, 10, 105, 0.1);
+    0 6px 24px rgba(11, 61, 145, 0.3),
+    0 0 0 3px rgba(11, 61, 145, 0.1);
   animation: biometric-pulse 2.5s ease-in-out infinite;
 }
 
@@ -432,8 +432,8 @@
 }
 
 @keyframes biometric-pulse {
-  0%, 100% { box-shadow: 0 6px 24px rgba(29, 10, 105, 0.3), 0 0 0 3px rgba(29, 10, 105, 0.1); }
-  50% { box-shadow: 0 6px 24px rgba(29, 10, 105, 0.5), 0 0 0 8px rgba(29, 10, 105, 0.06); }
+  0%, 100% { box-shadow: 0 6px 24px rgba(11, 61, 145, 0.3), 0 0 0 3px rgba(11, 61, 145, 0.1); }
+  50% { box-shadow: 0 6px 24px rgba(11, 61, 145, 0.5), 0 0 0 8px rgba(11, 61, 145, 0.06); }
 }
 
 .admin-biometric-header h3 {
@@ -465,17 +465,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(29, 10, 105, 0.15);
+  border: 2px solid rgba(11, 61, 145, 0.15);
   border-radius: 24px;
-  background: rgba(29, 10, 105, 0.03);
+  background: rgba(11, 61, 145, 0.03);
   overflow: hidden;
   transition: all 0.4s ease;
 }
 
 .scanning .fingerprint-visual {
-  border-color: rgba(29, 10, 105, 0.4);
-  background: rgba(29, 10, 105, 0.06);
-  box-shadow: 0 0 30px rgba(29, 10, 105, 0.12);
+  border-color: rgba(11, 61, 145, 0.4);
+  background: rgba(11, 61, 145, 0.06);
+  box-shadow: 0 0 30px rgba(11, 61, 145, 0.12);
 }
 
 .verified .fingerprint-visual {
@@ -493,7 +493,7 @@
 .fingerprint-svg {
   width: 140px;
   height: 160px;
-  color: #1D0A69;
+  color: #0B3D91;
   transition: color 0.4s ease;
 }
 
@@ -773,7 +773,7 @@
 .scan-progress-fill {
   height: 100%;
   border-radius: 10px;
-  background: linear-gradient(90deg, #1D0A69, #FF9933);
+  background: linear-gradient(90deg, #0B3D91, #FF9933);
   transition: width 0.2s ease;
 }
 
@@ -795,7 +795,7 @@
 
 /* ── Biometric Buttons ── */
 .admin-biometric-btn {
-  background: linear-gradient(135deg, #1D0A69, #3B1FBF) !important;
+  background: linear-gradient(135deg, #0B3D91, #1A5BC4) !important;
   gap: 10px !important;
 }
 

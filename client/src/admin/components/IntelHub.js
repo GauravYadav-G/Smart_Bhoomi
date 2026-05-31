@@ -48,7 +48,7 @@ const IntelHub = ({ stats }) => {
       icon: <FaStamp />,
       label: 'Stamp Duty Collected',
       value: fmtCurrency(stats.stampDutyCollected || 0),
-      color: '#1D0A69',
+      color: '#0B3D91',
       bgColor: '#EFF6FF',
       borderColor: '#BFDBFE',
       trend: 'up'
@@ -102,7 +102,7 @@ const IntelHub = ({ stats }) => {
       icon: <FaRupeeSign />,
       label: 'Avg Property Value',
       value: fmtCurrency(avgValue),
-      color: '#1D0A69',
+      color: '#0B3D91',
       bgColor: '#EFF6FF',
       borderColor: '#BFDBFE',
       trend: 'up'

@@ -36,7 +36,7 @@ const PIN_TYPES = [
   { value: 'government', label: 'Government Office', icon: <FaBuilding />, color: '#138808' },
   { value: 'public_building', label: 'Public Building', icon: <FaBuilding />, color: '#F59E0B' },
   { value: 'court', label: 'Court/Tribunal', icon: <FaLandmark />, color: '#DC2626' },
-  { value: 'registry_office', label: 'Sub-Registrar Office', icon: <FaBuilding />, color: '#1D0A69' },
+  { value: 'registry_office', label: 'Sub-Registrar Office', icon: <FaBuilding />, color: '#0B3D91' },
 ];
 
 const InteractiveIndiaMap = ({ heatmapData = {}, pinnedProperties = [], onPinProperty, propertyMarkers = [], onViewProperty }) => {
@@ -316,7 +316,7 @@ const InteractiveIndiaMap = ({ heatmapData = {}, pinnedProperties = [], onPinPro
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
-                      fill={isSelected ? '#1D0A69' : fillColor}
+                      fill={isSelected ? '#0B3D91' : fillColor}
                       stroke="#94A3B8"
                       strokeWidth={isSelected ? 1.5 : 0.5}
                       onClick={() => handleGeographyClick(geo)}

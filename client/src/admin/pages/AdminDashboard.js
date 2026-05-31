@@ -481,9 +481,9 @@ const AdminDashboard = () => {
     if (!reportData) return;
     const w = window.open('', '_blank');
     w.document.write(`<html><head><title>Property Report - ${reportData.property?.propertyId || ''}</title>
-      <style>body{font-family:'Inter',sans-serif;padding:40px;color:#1a1a1a} h1{color:#1D0A69;border-bottom:3px solid #FF9933;padding-bottom:10px}
+      <style>body{font-family:'Inter',sans-serif;padding:40px;color:#1a1a1a} h1{color:#0B3D91;border-bottom:3px solid #FF9933;padding-bottom:10px}
       table{width:100%;border-collapse:collapse;margin:20px 0} td,th{border:1px solid #ddd;padding:10px;text-align:left}
-      th{background:#1D0A69;color:white} .section{margin-top:30px} .badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+      th{background:#0B3D91;color:white} .section{margin-top:30px} .badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
       .header{display:flex;align-items:center;gap:15px;margin-bottom:30px}
       @media print{body{padding:20px}}</style></head><body>
       <div class="header"><h1>🏛️ Smart Bhoomi Property Report</h1></div>
@@ -1013,7 +1013,7 @@ const AdminDashboard = () => {
       {/* Stats Bar */}
       <div className="ad-prop-stats-bar">
         {[
-          { label: 'Total Registry', value: propertyCounts.total, icon: <FaBuilding />, color: '#1D0A69', bg: 'rgba(29,10,105,0.06)', border: 'rgba(29,10,105,0.18)' },
+          { label: 'Total Registry', value: propertyCounts.total, icon: <FaBuilding />, color: '#0B3D91', bg: 'rgba(11, 61, 145,0.06)', border: 'rgba(11, 61, 145,0.18)' },
           { label: 'Verified', value: propertyCounts.verified, icon: <FaCheckCircle />, color: '#138808', bg: 'rgba(19,136,8,0.06)', border: 'rgba(19,136,8,0.18)' },
           { label: 'Pending Review', value: propertyCounts.pending, icon: <FaClock />, color: '#D97706', bg: '#FFFBEB', border: '#FDE68A' },
           { label: 'Rejected', value: propertyCounts.rejected, icon: <FaTimesCircle />, color: '#DC2626', bg: '#FEF2F2', border: '#FECACA' }
@@ -1314,7 +1314,7 @@ const AdminDashboard = () => {
   };
 
   const kycLevelLabels = ['Not Started', 'Basic (1 ID)', 'Standard (2 IDs)', 'Biometric (1 Bio)', 'Full (2 Bio)', 'Maximum (All)'];
-  const kycLevelColors = ['#94A3B8', '#FF9933', '#0891B2', '#7C3AED', '#138808', '#1D0A69'];
+  const kycLevelColors = ['#94A3B8', '#FF9933', '#0891B2', '#7C3AED', '#138808', '#0B3D91'];
 
   const renderKycProfile = () => (
     <main className="admin-dash-main">
@@ -1522,7 +1522,7 @@ const AdminDashboard = () => {
                   {[
                     { mode: 'standard', label: 'Standard', desc: 'Password + TOTP Code', icon: <FaKey />, color: '#64748B', req: null },
                     { mode: 'biometric', label: 'Biometric', desc: 'Password + TOTP + Fingerprint OR Face', icon: <FaFingerprint />, color: '#7C3AED', req: 'Requires fingerprint or face enrolled' },
-                    { mode: 'enhanced', label: 'Enhanced', desc: 'Password + TOTP + Fingerprint + Face', icon: <FaShieldAlt />, color: '#1D0A69', req: 'Requires both fingerprint and face enrolled' }
+                    { mode: 'enhanced', label: 'Enhanced', desc: 'Password + TOTP + Fingerprint + Face', icon: <FaShieldAlt />, color: '#0B3D91', req: 'Requires both fingerprint and face enrolled' }
                   ].map(sm => {
                     const isActive = (kycData?.loginSecurityMode || 'standard') === sm.mode;
                     const canEnable = sm.mode === 'standard' ||
@@ -1592,7 +1592,7 @@ const AdminDashboard = () => {
       {/* Quick Stats Row */}
       <div className="ad-quick-stats">
         {[
-          { label: 'Total Properties', value: propertyCounts.total, icon: <FaBuilding />, color: '#1D0A69', bg: 'rgba(29,10,105,0.06)', border: 'rgba(29,10,105,0.15)' },
+          { label: 'Total Properties', value: propertyCounts.total, icon: <FaBuilding />, color: '#0B3D91', bg: 'rgba(11, 61, 145,0.06)', border: 'rgba(11, 61, 145,0.15)' },
           { label: 'Verified', value: propertyCounts.verified, icon: <FaCheckCircle />, color: '#138808', bg: 'rgba(19,136,8,0.06)', border: 'rgba(19,136,8,0.15)' },
           { label: 'Pending Review', value: propertyCounts.pending, icon: <FaExclamationTriangle />, color: '#FF9933', bg: 'rgba(255,153,51,0.08)', border: 'rgba(255,153,51,0.2)' },
           { label: 'Rejected', value: propertyCounts.rejected, icon: <FaTimesCircle />, color: '#DC2626', bg: 'rgba(220,38,38,0.05)', border: 'rgba(220,38,38,0.15)' },
@@ -1652,7 +1652,7 @@ const AdminDashboard = () => {
             { type: 'freeze', label: 'Freeze Property', desc: 'Halt all transactions', icon: <FaSnowflake />, color: '#0891B2', bg: 'rgba(8,145,178,0.06)' },
             { type: 'audit', label: 'Audit Trail', desc: 'View complete history', icon: <FaHistory />, color: '#7C3AED', bg: 'rgba(124,58,237,0.05)' },
             { type: 'dispute', label: 'Resolve Dispute', desc: 'Settle property disputes', icon: <FaGavel />, color: '#FF9933', bg: 'rgba(255,153,51,0.08)' },
-            { type: 'report', label: 'Generate Report', desc: 'Comprehensive report', icon: <FaFileContract />, color: '#1D0A69', bg: 'rgba(29,10,105,0.06)' },
+            { type: 'report', label: 'Generate Report', desc: 'Comprehensive report', icon: <FaFileContract />, color: '#0B3D91', bg: 'rgba(11, 61, 145,0.06)' },
             { type: 'flag', label: 'Flag Suspicious', desc: 'Mark for investigation', icon: <FaFlag />, color: '#DC2626', bg: 'rgba(220,38,38,0.05)' },
             { type: 'verify', label: 'Verify Owner', desc: 'Update KYC status', icon: <FaUserCheck />, color: '#138808', bg: 'rgba(19,136,8,0.06)' }
           ].map((action, i) => (

@@ -35,7 +35,7 @@ const OfficialSeal = ({ hash }) => {
       <defs>
         <linearGradient id="seal-gr" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.9" />
-          <stop offset="50%" stopColor="#1D0A69" stopOpacity="0.5" />
+          <stop offset="50%" stopColor="#0B3D91" stopOpacity="0.5" />
           <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.7" />
         </linearGradient>
         <radialGradient id="seal-glow" cx="50%" cy="50%">
@@ -187,7 +187,7 @@ const AdminSmartIDCard = ({ admin }) => {
           <div className="aid-qr-section">
             <div className="aid-qr-container">
               <div className="aid-qr-frame">
-                <QRCode value={qrPayload} size={140} fgColor="#1D0A69" bgColor="#FFFFFF" level="M" />
+                <QRCode value={qrPayload} size={140} fgColor="#0B3D91" bgColor="#FFFFFF" level="M" />
               </div>
               <div className="aid-qr-timer">
                 <FaClock />

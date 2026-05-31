@@ -47,7 +47,7 @@
   padding: 8px 20px;
   border: none;
   border-radius: 8px;
-  background: #1D0A69;
+  background: #0B3D91;
   color: white;
   font-size: 0.78rem;
   font-weight: 600;
@@ -98,14 +98,14 @@
 
 .map-tool-btn:hover {
   background: #F8FAFC;
-  color: #1D0A69;
+  color: #0B3D91;
   border-color: #CBD5E1;
 }
 
 .map-tool-btn.active {
   background: #EFF6FF;
-  border-color: #1D0A69;
-  color: #1D0A69;
+  border-color: #0B3D91;
+  color: #0B3D91;
 }
 
 .map-tool-divider {
@@ -340,7 +340,7 @@
 
 .pin-form-fields input:focus,
 .pin-form-fields select:focus {
-  border-color: #1D0A69;
+  border-color: #0B3D91;
   box-shadow: 0 0 0 2px rgba(11,61,145,0.1);
 }
 
@@ -367,7 +367,7 @@
   padding: 8px;
   border: none;
   border-radius: 8px;
-  background: #1D0A69;
+  background: #0B3D91;
   color: white;
   font-size: 0.72rem;
   font-weight: 600;
@@ -468,13 +468,13 @@
   gap: 6px;
 }
 .prop-markers-bar-icon {
-  color: #1D0A69;
+  color: #0B3D91;
   font-size: 0.85rem;
 }
 .prop-markers-bar-count {
   font-weight: 800;
   font-size: 0.9rem;
-  color: #1D0A69;
+  color: #0B3D91;
 }
 .prop-markers-bar-label {
   font-size: 0.72rem;
@@ -505,8 +505,8 @@
   color: #334155;
 }
 .prop-marker-filter-btn.active {
-  border-color: #1D0A69;
-  color: #1D0A69;
+  border-color: #0B3D91;
+  color: #0B3D91;
   background: #EFF6FF;
 }
 .filter-dot {
@@ -535,8 +535,8 @@
 }
 .prop-list-toggle-btn:hover,
 .prop-list-toggle-btn.active {
-  border-color: #1D0A69;
-  color: #1D0A69;
+  border-color: #0B3D91;
+  color: #0B3D91;
   background: #EFF6FF;
 }
 
@@ -648,7 +648,7 @@
   width: 100%;
   padding: 9px;
   border: none;
-  background: #1D0A69;
+  background: #0B3D91;
   color: white;
   font-size: 0.73rem;
   font-weight: 700;
@@ -698,7 +698,7 @@
   margin: 0;
   font-size: 0.78rem;
   font-weight: 700;
-  color: #1D0A69;
+  color: #0B3D91;
   display: flex;
   align-items: center;
   gap: 6px;
