@@ -94,7 +94,7 @@
    TOP BAR — Glassmorphic Deep Navy
    ══════════════════════════════════════════ */
 .admin-topbar {
-  position: sticky; top: 0; z-index: 100;
+  position: sticky; top: 0; z-index: 999;
   display: flex; justify-content: space-between; align-items: center;
   padding: 0 32px; height: 64px;
   background: var(--deep-navy-90);
@@ -2858,7 +2858,7 @@
 
 .ad-sidebar {
   position: fixed;
-  top: 80px;
+  top: 64px;
   left: 0;
   bottom: 0;
   width: 240px;
