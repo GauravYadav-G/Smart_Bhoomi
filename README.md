@@ -4,6 +4,88 @@ Smart Bhoomi is a secure, blockchain-based government property registry system d
 
 ---
 
+## 🏛️ System Architecture
+
+```mermaid
+graph TB
+    %% Core Nodes & Subgraphs
+    subgraph ClientLayer ["🖥️ Client Presentation Layer (React SPA)"]
+        UserApp["👤 Public User App<br/>(Dashboard, Registry, Transfers)"]
+        AdminPortal["🏛️ Government Command Center<br/>(Admin Dashboard, Intel Hub)"]
+        LeafletMap["🗺️ Leaflet Map Picker<br/>(GIS Coordinate Plotter)"]
+        WebAuthnClient["🔑 WebAuthn Client<br/>(Device Passkey Registry)"]
+    end
+
+    subgraph SecurityGateway ["🔒 Middleware & Gatekeeper"]
+        ExpressLimit["🛡️ Rate Limiter & Helmet<br/>(CSP & DDoS Protection)"]
+        AuthMiddleware["🔑 User JWT Auth"]
+        AdminAuthMiddleware["👑 Admin Clearance Guard<br/>(Clearance Levels 1-5)"]
+    end
+
+    subgraph ServerLayer ["⚙️ Application Server (Express API & WebSockets)"]
+        ExpressApp["Express.js Server"]
+        SocketServer["⚡ Real-Time Socket.io Server<br/>(Push Blockchain Alerts)"]
+        APIRoutes["🛠️ Rest Endpoints<br/>(/api/auth, /api/property, etc.)"]
+    end
+
+    subgraph ServiceLayer ["🧠 Microservices & Diagnostics"]
+        MLService["🤖 AI Fraud Detector<br/>(Anomaly Flagging Engine)"]
+        IPFSService["📦 IPFS Document Storage<br/>(Pinata Ledger Links)"]
+        BiometricService["🧬 Biometric Service<br/>(WebAuthn Server Verification)"]
+        SpatialConflict["🌐 Cadastral Spatial Audit<br/>(GIS Overlap Math)"]
+        PaymentService["💳 UPI / Payment Gateway<br/>(Settlements & Fees)"]
+    end
+
+    subgraph DataStorageLayer ["💾 Data & Sovereign Blockchain Ledger"]
+        MongoDB[("🍃 MongoDB Database<br/>(Cadastral & Audit Records)")]
+        subgraph SovereignChain ["🇮🇳 Bharat Land Chain PoA Validator Network"]
+            SmartContract["📜 PropertyRegistry.sol<br/>(Solidity Contract)"]
+            Node1["⚡ Validator Node 1<br/>(Delhi)"]
+            Node2["⚡ Validator Node 2<br/>(Mumbai)"]
+            Node3["⚡ Validator Node 3<br/>(Bangalore)"]
+        end
+    end
+
+    %% Connections
+    UserApp --> ExpressLimit
+    AdminPortal --> ExpressLimit
+    LeafletMap --> ExpressLimit
+    WebAuthnClient --> ExpressLimit
+
+    ExpressLimit --> AuthMiddleware
+    ExpressLimit --> AdminAuthMiddleware
+
+    AuthMiddleware --> APIRoutes
+    AdminAuthMiddleware --> APIRoutes
+    APIRoutes --> ExpressApp
+    ExpressApp <--> SocketServer
+
+    ExpressApp --> MLService
+    ExpressApp --> IPFSService
+    ExpressApp --> BiometricService
+    ExpressApp --> SpatialConflict
+    ExpressApp --> PaymentService
+
+    ExpressApp <--> MongoDB
+    ExpressApp <--> SmartContract
+    SmartContract <--> Node1 & Node2 & Node3
+
+    %% Styling
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0369a1;
+    classDef gateway fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#991b1b;
+    classDef server fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e;
+    classDef service fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef database fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#581c87;
+
+    class UserApp,AdminPortal,LeafletMap,WebAuthnClient client;
+    class ExpressLimit,AuthMiddleware,AdminAuthMiddleware gateway;
+    class ExpressApp,SocketServer,APIRoutes server;
+    class MLService,IPFSService,BiometricService,SpatialConflict,PaymentService service;
+    class MongoDB,SmartContract,Node1,Node2,Node3 database;
+```
+
+---
+
 ## 🚀 Key Features
 
 *   **Sovereign Bharat Land Chain**: A Proof-of-Authority (PoA) blockchain network sealing land records and transaction history.
