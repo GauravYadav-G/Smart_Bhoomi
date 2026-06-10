@@ -120,6 +120,9 @@ export const adminDashboardAPI = {
   uploadDocument: (propertyId, formData) => adminApi.post(`/admin/upload-document/${propertyId}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   }),
+  retrieveDocument: (propertyId, docIndex) => adminApi.get(`/admin/retrieve-document/${propertyId}/${docIndex}`, {
+    responseType: 'blob'
+  }),
   getPropertiesMissingDocs: () => adminApi.get('/admin/missing-documents'),
   // Announcements & Guidelines
   createAnnouncement: (data) => adminApi.post('/admin/announcements', data),

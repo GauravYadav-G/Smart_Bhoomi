@@ -31,7 +31,7 @@ app.use(helmet({
       fontSrc: ["'self'", "data:", "fonts.googleapis.com", "fonts.gstatic.com"],
       connectSrc: ["'self'", "https:", "http:", "*.tile.openstreetmap.org", "tile.openstreetmap.org"],
       mediaSrc: ["'self'"],
-      frameSrc: ["'self'", "https://www.openstreetmap.org", "https://maps.openstreetmap.org"],
+      frameSrc: ["'self'", "blob:", "https://www.openstreetmap.org", "https://maps.openstreetmap.org"],
     },
   },
 }));
@@ -45,6 +45,10 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Ensure uploads directory exists
+const fs = require('fs');
+if (!fs.existsSync('uploads')) fs.mkdirSync('uploads', { recursive: true });
 
 // Serve uploaded files
 app.use('/uploads', express.static('uploads'));

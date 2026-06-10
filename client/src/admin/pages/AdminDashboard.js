@@ -254,6 +254,39 @@ const AdminDashboard = () => {
     finally { setAdminDocUploading(false); }
   };
 
+  // ── Document Download & Preview ──
+  const handleDocDownload = async (propertyId, docIndex, docName) => {
+    try {
+      toast.info('📥 Fetching document...');
+      const res = await adminDashboardAPI.retrieveDocument(propertyId, docIndex);
+      const blob = new Blob([res.data], { type: res.headers['content-type'] || 'application/octet-stream' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = docName || `document_${docIndex}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download error:', err);
+      toast.error(err.response?.data?.message || 'Failed to download document');
+    }
+  };
+
+  const handleDocPreview = async (propertyId, docIndex) => {
+    try {
+      toast.info('🔍 Loading preview...');
+      const res = await adminDashboardAPI.retrieveDocument(propertyId, docIndex);
+      const blob = new Blob([res.data], { type: res.headers['content-type'] || 'application/octet-stream' });
+      const url = window.URL.createObjectURL(blob);
+      setDocViewer(url);
+    } catch (err) {
+      console.error('Preview error:', err);
+      toast.error(err.response?.data?.message || 'Failed to load document preview');
+    }
+  };
+
   // ── Announcements ──
   const fetchAnnouncements = useCallback(async () => {
     try {
@@ -744,14 +777,14 @@ const AdminDashboard = () => {
                           </div>
                         </div>
                         <div className="ad-doc-actions">
-                          {doc.documentPath && (
+                          {(doc.documentPath || doc.ipfsCID) && (
                             <>
-                              <button className="ad-doc-btn view" title="Preview Document" onClick={() => setDocViewer(`${API_URL}/${doc.documentPath}`)}>
+                              <button className="ad-doc-btn view" title="Preview Document" onClick={() => handleDocPreview(p._id || p.propertyId, i)}>
                                 <FaEye /> <span>View</span>
                               </button>
-                              <a className="ad-doc-btn download" title="Download" href={`${API_URL}/${doc.documentPath}`} target="_blank" rel="noopener noreferrer" download>
+                              <button className="ad-doc-btn download" title="Download" onClick={() => handleDocDownload(p._id || p.propertyId, i, doc.documentName)}>
                                 <FaDownload /> <span>Download</span>
-                              </a>
+                              </button>
                             </>
                           )}
                         </div>
@@ -2155,11 +2188,11 @@ const AdminDashboard = () => {
 
       {/* ═══ Document Viewer ═══ */}
       {docViewer && (
-        <div className="ad-modal-overlay doc-overlay" onClick={() => setDocViewer(null)}>
+        <div className="ad-modal-overlay doc-overlay" onClick={() => { if (docViewer.startsWith('blob:')) window.URL.revokeObjectURL(docViewer); setDocViewer(null); }}>
           <div className="doc-viewer-modal" onClick={(e) => e.stopPropagation()}>
             <div className="doc-viewer-header">
               <h3><FaFilePdf /> Document Preview</h3>
-              <button onClick={() => setDocViewer(null)}><FaTimes /></button>
+              <button onClick={() => { if (docViewer.startsWith('blob:')) window.URL.revokeObjectURL(docViewer); setDocViewer(null); }}><FaTimes /></button>
             </div>
             <div className="doc-viewer-body">
               <iframe src={docViewer} title="Document Preview" className="doc-viewer-iframe" />

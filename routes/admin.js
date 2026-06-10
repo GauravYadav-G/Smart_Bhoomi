@@ -32,6 +32,7 @@ const {
   completeBiometricLogin,
   updateLoginSecurityMode,
   adminUploadDocument,
+  adminRetrieveDocument,
   getPropertiesMissingDocs,
   createAnnouncement,
   getAllAnnouncements,
@@ -85,6 +86,7 @@ router.put('/login-security-mode', protectAdmin, updateLoginSecurityMode);
 
 // ─── Admin Document Upload ───
 router.post('/upload-document/:propertyId', protectAdmin, adminUploadDocument);
+router.get('/retrieve-document/:propertyId/:docIndex', protectAdmin, adminRetrieveDocument);
 router.get('/missing-documents', protectAdmin, getPropertiesMissingDocs);
 
 // ─── Announcements & Guidelines ───

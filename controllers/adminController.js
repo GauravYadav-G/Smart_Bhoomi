@@ -1814,6 +1814,82 @@ exports.adminUploadDocument = async (req, res) => {
   });
 };
 
+// ═══════════════════════════════════════════════════════════
+// GET /api/admin/retrieve-document/:propertyId/:docIndex
+// Admin: Retrieve & serve a document (IPFS or disk-stored)
+// ═══════════════════════════════════════════════════════════
+exports.adminRetrieveDocument = async (req, res) => {
+  try {
+    const { propertyId, docIndex } = req.params;
+    const idx = parseInt(docIndex, 10);
+
+    // Find property by _id or propertyId
+    const property = await Property.findById(propertyId).populate('owner', '_id')
+      || await Property.findOne({ propertyId }).populate('owner', '_id');
+    if (!property) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
+    }
+
+    if (!property.documents || idx < 0 || idx >= property.documents.length) {
+      return res.status(404).json({ success: false, message: 'Document not found at given index' });
+    }
+
+    const doc = property.documents[idx];
+
+    // Determine content type from file name
+    const ext = (doc.documentName || '').toLowerCase();
+    let contentType = 'application/octet-stream';
+    if (ext.endsWith('.pdf'))                          contentType = 'application/pdf';
+    else if (ext.endsWith('.jpg') || ext.endsWith('.jpeg')) contentType = 'image/jpeg';
+    else if (ext.endsWith('.png'))                     contentType = 'image/png';
+    else if (ext.endsWith('.doc'))                     contentType = 'application/msword';
+    else if (ext.endsWith('.docx'))                    contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+    // ── CASE 1: IPFS-stored document (has CID) — decrypt & serve ──
+    if (doc.ipfsCID) {
+      const ipfsService = require('../services/ipfsService');
+      const ownerId = property.owner?._id?.toString();
+      if (!ownerId) {
+        return res.status(500).json({ success: false, message: 'Owner ID not available for decryption' });
+      }
+      const decryptedBuffer = await ipfsService.retrieveDocument(doc.ipfsCID, property.propertyId, ownerId);
+      res.set({
+        'Content-Type':        contentType,
+        'Content-Disposition': `inline; filename="${doc.documentName || `document_${idx}`}"`,
+        'Content-Length':      decryptedBuffer.length,
+        'X-IPFS-CID':         doc.ipfsCID,
+      });
+      return res.send(decryptedBuffer);
+    }
+
+    // ── CASE 2: Disk-stored document (admin upload or local fallback) ──
+    if (doc.documentPath) {
+      const fs = require('fs');
+      const diskPath = require('path');
+      // documentPath is stored as relative (e.g., "uploads/admin-doc-xxx.pdf")
+      const absolutePath = diskPath.resolve(doc.documentPath);
+      if (!fs.existsSync(absolutePath)) {
+        return res.status(404).json({
+          success: false,
+          message: 'Document file not found on server. It may have been lost during a deployment. Please re-upload.',
+        });
+      }
+      const fileBuffer = fs.readFileSync(absolutePath);
+      res.set({
+        'Content-Type':        contentType,
+        'Content-Disposition': `inline; filename="${doc.documentName || `document_${idx}`}"`,
+        'Content-Length':      fileBuffer.length,
+      });
+      return res.send(fileBuffer);
+    }
+
+    return res.status(404).json({ success: false, message: 'No document path or IPFS CID available' });
+  } catch (error) {
+    console.error('❌ Admin document retrieve error:', error);
+    res.status(500).json({ success: false, message: 'Document retrieval failed: ' + error.message });
+  }
+};
+
 // Get properties with missing documents
 exports.getPropertiesMissingDocs = async (req, res) => {
   try {
