@@ -21,10 +21,12 @@ import {
   FaGlobe,
   FaEye,
   FaUsers,
+  FaDownload,
 } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi';
 import './Dashboard.css';
 import SmartIdentityCard from '../components/SmartIdentityCard';
+import BlockchainConfirmation from '../components/BlockchainConfirmation';
 
 /* ─── Animation Variants ─── */
 const pageVariants = {
@@ -115,7 +117,7 @@ const ActionCard = ({ to, icon, label, description, variant = 'default' }) => (
 );
 
 /* ─── Property Row ─── */
-const PropertyRow = ({ property, index, isBuying = false }) => (
+const PropertyRow = ({ property, index, isBuying = false, onDownloadCertificate }) => (
   <motion.div
     className={`db-prop-row ${isBuying ? 'buying' : property.verification?.status || ''} ${property.status && property.status !== 'active' ? 'prop-' + property.status : ''}`}
     initial={{ opacity: 0, x: -20 }}
@@ -156,6 +158,16 @@ const PropertyRow = ({ property, index, isBuying = false }) => (
       <Link to={isBuying ? `/properties/${property.propertyId}` : `/properties/${property.propertyId}`} className="db-view-btn">
         <FaEye /> <span>View</span>
       </Link>
+      {!isBuying && (
+        <button 
+          onClick={(e) => { e.preventDefault(); onDownloadCertificate(property); }} 
+          className="db-view-btn outline"
+          title="Download Blockchain Certificate"
+          style={{ cursor: 'pointer', border: '1px solid var(--glass-border)' }}
+        >
+          <FaDownload /> <span>Certificate</span>
+        </button>
+      )}
       {isBuying && (
         <Link to="/transfers" className="db-view-btn outline">
           <FaExchangeAlt /> <span>Transfer</span>
@@ -189,6 +201,16 @@ const Dashboard = () => {
   const [nomineeLoading, setNomineeLoading] = useState(false);
   const [nomineeError, setNomineeError] = useState('');
   const [nomineeSuccess, setNomineeSuccess] = useState(false);
+
+  /* ─── Certificate Modal State ─── */
+  const [showCertificateModal, setShowCertificateModal] = useState(false);
+  const [selectedPropertyForCertificate, setSelectedPropertyForCertificate] = useState(null);
+
+  const handleDownloadCertificate = (property) => {
+    setSelectedPropertyForCertificate(property);
+    setShowCertificateModal(true);
+  };
+
 
   /* ─── Time Greeting ─── */
   const greeting = useMemo(() => {
@@ -470,7 +492,7 @@ const Dashboard = () => {
                 {recentProperties.length > 0 ? (
                   <div className="db-prop-list">
                     {recentProperties.map((property, i) => (
-                      <PropertyRow key={property._id} property={property} index={i} />
+                      <PropertyRow key={property._id} property={property} index={i} onDownloadCertificate={handleDownloadCertificate} />
                     ))}
                   </div>
                 ) : (
@@ -489,7 +511,7 @@ const Dashboard = () => {
                 {buyingProperties.length > 0 ? (
                   <div className="db-prop-list">
                     {buyingProperties.map((property, i) => (
-                      <PropertyRow key={property._id} property={property} index={i} isBuying />
+                      <PropertyRow key={property._id} property={property} index={i} isBuying onDownloadCertificate={handleDownloadCertificate} />
                     ))}
                   </div>
                 ) : (
@@ -564,8 +586,28 @@ const Dashboard = () => {
         </motion.div>
       )}
 
+      {/* Blockchain Certificate Modal */}
+      {showCertificateModal && selectedPropertyForCertificate && (
+        <BlockchainConfirmation
+          transaction={{
+            hash: selectedPropertyForCertificate.blockchainTransactionId || selectedPropertyForCertificate.blockchainHash || 'N/A',
+            blockNumber: selectedPropertyForCertificate.blockNumber || '10482',
+            timestamp: selectedPropertyForCertificate.createdAt || new Date().toISOString()
+          }}
+          property={selectedPropertyForCertificate}
+          ipfsCIDs={(selectedPropertyForCertificate.documents || [])
+            .filter(d => d.ipfsCID)
+            .map(d => ({ name: d.documentType, cid: d.ipfsCID }))}
+          onClose={() => {
+            setShowCertificateModal(false);
+            setSelectedPropertyForCertificate(null);
+          }}
+        />
+      )}
+
     </>
   );
+
 };
 
 export default Dashboard;

@@ -35,7 +35,8 @@ import {
   FaBrain,
   FaSnowflake,
   FaBan,
-  FaArchive
+  FaArchive,
+  FaDownload
 } from 'react-icons/fa';
 import { 
   ApprovalTimeEstimator, 
@@ -46,6 +47,7 @@ import {
   AnomalyTimeline 
 } from '../components/PredictiveIndicators';
 import BoundaryMap from '../components/BoundaryMap';
+import BlockchainConfirmation from '../components/BlockchainConfirmation';
 import './PropertyDetails.css';
 
 const PropertyDetails = () => {
@@ -59,6 +61,7 @@ const PropertyDetails = () => {
   const [riskScore, setRiskScore] = useState(null);
   const [propertyAnalysis, setPropertyAnalysis] = useState(null);
   const [showTransferModal, setShowTransferModal] = useState(false);
+  const [showCertificateModal, setShowCertificateModal] = useState(false);
   const [proposedPrice, setProposedPrice] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [showMap, setShowMap] = useState(false);
@@ -309,8 +312,17 @@ const PropertyDetails = () => {
               )}
 
               {isOwner ? (
-                <div className="pd-owner-tag">
-                  <FaStar /> Your Property
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
+                  <div className="pd-owner-tag" style={{ margin: 0 }}>
+                    <FaStar /> Your Property
+                  </div>
+                  <button 
+                    className="pd-transfer-cta" 
+                    onClick={() => setShowCertificateModal(true)}
+                    style={{ background: 'linear-gradient(135deg, #059669, #10B981)', border: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
+                  >
+                    <FaDownload /> Download Certificate
+                  </button>
                 </div>
               ) : (
                 verificationStatus === 'verified' && property?.status === 'active' && (
@@ -818,6 +830,22 @@ const PropertyDetails = () => {
           </div>
         </div>
       )}
+      {/* Blockchain Certificate Modal */}
+      {showCertificateModal && property && (
+        <BlockchainConfirmation
+          transaction={{
+            hash: property.blockchainTransactionId || property.blockchainHash || 'N/A',
+            blockNumber: property.blockNumber || '10482',
+            timestamp: property.createdAt || new Date().toISOString()
+          }}
+          property={property}
+          ipfsCIDs={(property.documents || [])
+            .filter(d => d.ipfsCID)
+            .map(d => ({ name: d.documentType, cid: d.ipfsCID }))}
+          onClose={() => setShowCertificateModal(false)}
+        />
+      )}
+
     </div>
   );
 };

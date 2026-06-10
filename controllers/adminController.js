@@ -1789,7 +1789,13 @@ exports.adminUploadDocument = async (req, res) => {
         uploadedAt: new Date()
       };
 
-      property.documents.push(newDoc);
+      const existingDocIdx = property.documents.findIndex(d => d.documentType === documentType);
+      if (existingDocIdx !== -1) {
+        property.documents[existingDocIdx] = newDoc;
+        property.markModified('documents');
+      } else {
+        property.documents.push(newDoc);
+      }
 
       // Add admin note about upload
       if (!property.verification.notes) property.verification.notes = [];

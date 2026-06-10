@@ -108,8 +108,14 @@ exports.uploadDocument = async (req, res) => {
       uploadedAt:        new Date(),
     };
 
-    // 8. Push into property.documents array
-    property.documents.push(docRecord);
+    // 8. Push/Update property.documents array
+    const existingDocIdx = property.documents.findIndex(d => d.documentType === documentType);
+    if (existingDocIdx !== -1) {
+      property.documents[existingDocIdx] = docRecord;
+      property.markModified('documents');
+    } else {
+      property.documents.push(docRecord);
+    }
     await property.save();
 
     // 9. Record CID on blockchain (if CID available)
